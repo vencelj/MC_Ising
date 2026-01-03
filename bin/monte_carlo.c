@@ -69,7 +69,7 @@ void load_temps(struct SimConfig *sim, float *temps, const char *dirPath){
     fclose(file);
 }
 
-void save_measurment(struct SimConfig *sim, float *magnetization, float *energy, const char *dirPath){
+void save_measurment(struct SimConfig *sim, int64_t *magnetization, float *energy, const char *dirPath){
     char fullPath[1024];
     snprintf(fullPath, sizeof(fullPath), "%s/measurment.bin", dirPath);
 
@@ -80,7 +80,7 @@ void save_measurment(struct SimConfig *sim, float *magnetization, float *energy,
 
     uint32_t N = sim->run_time;
 
-    fwrite(magnetization, sizeof(float), N, file);
+    fwrite(magnetization, sizeof(int64_t), N, file);
     fwrite(energy, sizeof(float), N, file);
 
     fclose(file);

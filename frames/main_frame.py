@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from tkinter.filedialog import askopenfilename
+from tkinter.filedialog import askdirectory
 from tkinterdnd2 import TkinterDnD, DND_FILES
 from CTkMenuBar import *
 from PIL import Image, ImageTk
@@ -164,7 +164,7 @@ class MainFrame(ctk.CTkFrame, TkinterDnD.DnDWrapper):
                                   window=self.init_method_combo)
 
         self.temp_cycle_label = ctk.CTkLabel(self,
-                                             text="Initial condition:",
+                                             text="Temperature cycle:",
                                              bg_color="#f0f0f0")
         self.canvas.create_window(20,
                                   520,
@@ -216,11 +216,13 @@ class MainFrame(ctk.CTkFrame, TkinterDnD.DnDWrapper):
             ("All Files", "*.*")
         ]
 
-        im_path = askopenfilename(initialdir=init_dir,
-                                  title="Select datafile",
-                                  filetypes=filetypes)
+        im_path = askdirectory(initialdir=init_dir,
+                               title="Select datafile",
+                               mustexist=True)
         if im_path:
             self.master.winfo_toplevel().master_setter(Variables.DATA_PATH, str(im_path))
+
+        generate_protocol(master=self)
 
     def _update_path_label(self, *_):
         data_path = Path(self.master.winfo_toplevel(
@@ -234,7 +236,7 @@ class MainFrame(ctk.CTkFrame, TkinterDnD.DnDWrapper):
         self.master.winfo_toplevel().master_setter(Variables.INIT_METHOD,
                                                    self.init_values.index(self.init_method_combo.get()))
         self.master.winfo_toplevel().master_setter(Variables.TEMP_CYCLE,
-                                                   self.init_values.index(self.temp_cycle_combo.get()))
+                                                   self.cycle_values.index(self.temp_cycle_combo.get()))
         generate_protocol(master=self)
 
     def delegate_path(self, event):

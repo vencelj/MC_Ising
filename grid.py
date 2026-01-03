@@ -40,7 +40,7 @@ class Grid():
             case InitMethods.WARM_UP:
                 self.atoms = np.zeros(shape=array_size,
                                       dtype=np.int8)
-                self.atoms += 1
+                self.atoms -= 1
             case _:
                 raise Exception
 
@@ -54,7 +54,7 @@ class Grid():
             "init": self.type_int_checker(self.params["ini_cond"]),
         }
 
-        L = self.struct_params["run:time"]
+        L = self.struct_params["run_time"]
         t_min = self.struct_params["T_min"]
         t_max = self.struct_params["T_max"]
 
@@ -82,19 +82,24 @@ class Grid():
                 self.temps = np.concatenate((np.linspace(t_min, t_max, num=rise_len),
                                              np.linspace(t_max, t_min, num=fall_len)))
 
-    def create_config_txt(self, path):
-        with open(path/".config.bin", "wb") as config:
+    def create_config_bin(self, path):
+        with open(path/"config.bin", "wb") as config:
             for _, item in self.struct_params.items():
                 config.write(item.tobytes())
 
+    def create_config_txt(self, path):
+        with open(path/"config.txt", "w") as config:
+            for key, item in self.struct_params.items():
+                config.write(f"{key}:{item}\n")
+
     def export_atoms(self, path):
         bin_atoms = self.atoms.astype(np.int8)
-        with open(path/".atoms.bin", "wb") as outfile:
+        with open(path/"atoms.bin", "wb") as outfile:
             outfile.write(bin_atoms.tobytes())
 
     def export_temp_cycle(self, path):
         bin_temps = self.temps.astype(np.float32)
-        with open(path/".temp_cycle.bin", "wb") as outfile:
+        with open(path/"temp_cycle.bin", "wb") as outfile:
             outfile.write(bin_temps.tobytes())
 
     def temperature(self, param: str):

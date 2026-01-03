@@ -1,6 +1,6 @@
 from var_config import ConfigGUI, Variables
 from pathlib import Path
-from grid import Grid, InitMethods
+from grid import Grid
 from datetime import datetime
 from threading import Thread
 import subprocess
@@ -26,8 +26,8 @@ def _process(master):
     if data_path != app_path:
         try:
             master.winfo_toplevel().master_setter(Variables.DATA_PATH, str(app_path))
-            master.winfo_toplevel().window_opener(ConfigGUI.RESULTS_WINDOW,
-                                                  data_path)
+            master.winfo_toplevel().window_mannager(ConfigGUI.RESULTS_WINDOW,
+                                                    dir_path=data_path)
         except Exception:
             error_message = "File was corrupted.\nTry to create new one."
             master.after(200,
@@ -46,6 +46,7 @@ def _process(master):
             Path.mkdir(dir_name)
             grid = Grid(master=master)
             grid.create_config_txt(dir_name)
+            grid.create_config_bin(dir_name)
             grid.export_atoms(dir_name)
             grid.export_temp_cycle(dir_name)
         except Exception:
@@ -61,8 +62,10 @@ def _process(master):
         try:
             if platform.system() == "Windows":
                 bin_path = ConfigGUI.get_path(master, r"./bin/simulant.exe")
-            elif platform.system() == "linux":
+            elif platform.system() == "Linux":
                 bin_path = ConfigGUI.get_path(master, r"./bin/simulant")
+            else:
+                raise Exception
             result = subprocess.run([bin_path, str(dir_name.resolve())],
                                     capture_output=True, text=True)
             if result.returncode == 1:
@@ -78,8 +81,8 @@ def _process(master):
                                                                          load=False))
             return
         try:
-            master.winfo_toplevel().window_opener(ConfigGUI.RESULTS_WINDOW,
-                                                  dir_name.resolve())
+            master.winfo_toplevel().window_mannager(ConfigGUI.RESULTS_WINDOW,
+                                                    dir_path=dir_name.resolve())
         except Exception:
             error_message = "Results failed to load."
             master.after(200,

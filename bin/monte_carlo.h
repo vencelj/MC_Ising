@@ -7,6 +7,7 @@
 #include <math.h>
 #include <stdint.h>
 #include <time.h>
+#include <stdbool.h>
 
 enum InitMethod{
     RANDOM,
@@ -32,7 +33,7 @@ struct SimMeas{
 // rand between 0-1
 #define PROB()(((float)rand())/((float)RAND_MAX))
 
-const float bolzmannConst = 8.617333262e-5;
+static const double bolzmannConst = 1; // 8.617333262e-5 eV
 
 // load config.txt
 void load_config(struct SimConfig *sim, const char *dirPath);
@@ -47,6 +48,6 @@ void load_atoms(struct SimConfig *sim, int8_t *atoms, const char *dirPath);
 void save_atoms(struct SimConfig *sim, int8_t *atoms, const char *dirPath);
 
 // save measurment.bin
-void save_measurment(struct SimConfig *sim, float *magnetization, float *energy, const char *dirPath);
+void save_measurment(struct SimConfig *sim, int64_t *magnetization, float *energy, const char *dirPath);
 
 #endif

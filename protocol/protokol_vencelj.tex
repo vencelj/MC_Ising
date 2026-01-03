@@ -1,0 +1,128 @@
+\documentclass{article} % doc type
+\usepackage[czech]{babel} % labnguage support
+\usepackage[T1]{fontenc} % font
+\usepackage{multirow} % multirow
+\usepackage{geometry} % paper geometry
+\usepackage{amsmath} % math for LaTeX
+\usepackage{graphicx} % pictures, graphical env
+\usepackage{pgfplots} % graph
+\usepackage{physics} % derivative
+\usepackage{siunitx} % tabůes, quantities
+\usepackage{booktabs} % 
+\usepackage{hyperref} % functional links
+\usepackage{indentfirst} % indent the first row in paragraph
+\usepackage{float} % override graphical placement
+\usepackage{appendix} % appendicies
+\usepackage{bm} % bold math
+\usepackage{makecell} % split text with cell
+\usepackage{url} % url
+
+
+\geometry{a4paper}
+
+% setup SIunitX env
+\sisetup{
+	output-decimal-marker = {,},
+	retain-explicit-plus = true,
+	uncertainty-mode = separate,
+	list-final-separator = {~a~},
+	list-pair-separator  = {~a~},
+	range-phrase={~do~},
+	per-mode = power,
+	inter-unit-product = \ensuremath{\cdot},
+	exponent-product = {\, \ensuremath{\cdot} \,},
+	uncertainty-separator = {\, \ensuremath{\pm} \,},
+	tight-spacing = false,
+}
+
+% tables
+\setlength{\heavyrulewidth}{1.8pt} % table separator
+\setlength{\lightrulewidth}{1.2pt} % header separator
+
+
+\newcommand{\header}[1]{% 
+	\rule{0pt}{2\baselineskip}%
+	\textbf{\makecell[c]{#1}}%
+}
+
+\newcommand{\headermath}[2]{%
+	\rule{0pt}{2\baselineskip}%
+	\boldmath%
+	$\displaystyle \frac{#1}{\unit[unit-font-command = \mathbf]{#2}}$%
+}
+
+% renew SiunitX v. 3.X.X
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+\ExplSyntaxOn
+% turn off wanring about SIunitX & physics conflict
+\msg_redirect_name:nnn { siunitx } { physics-pkg } { none } 
+\ExplSyntaxOff
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\vspace*{1cm}
+			Vysoká škola chemicko-technologická, Praha\\
+			Fakulta chemického inženýrství\\
+			Ústav fyzikální chemie (403)\\
+			
+			\vfill
+			
+			\textbf{\huge Isingův model ve 3D}
+			
+			\vspace{0.5cm}
+			P02-ISING
+			
+			\vspace{1.5cm}
+			
+			\textbf{Jakub Vencel}
+			
+			Semestrální práce \\
+			Počítačová chemie (B403011)\\
+			
+			\vspace{0.8cm}
+			
+			\includegraphics[width=0.2\textwidth]{logoVSCHT_ikona.png}
+			
+			
+			Praha 2025 \\
+			vedoucí práce: prof. RNDr. Jiří Kolafa, CSc.\\
+			
+		\end{center}
+	\end{titlepage}
+	
+	\section{Úvod}
+	$$\qty{5 \pm 0.1}{\raiseto{0.5}\meter}$$
+	\qtylist{5; 2; 4; 5}{\meter \second}
+	$$\qtyproduct{10 x 20 x 30}{\meter}$$
+	\qtyrange{5}{30}{\meter}
+	$$\qty{317 \pm 0.01e-7}{\m\per\s}$$
+	$$\ang{10;20;30}$$
+	$$\complexqty{1.5 + 2.3j}{\ohm}$$
+	$$\qty{60}{px \per \second}$$
+	$$\qty{60}{px \, \second^{-1}}$$
+	$$\qty{5}{\meter\textsubscript{peak}}$$
+	$$\qty{230}{\volt\of{in}}$$
+	\begin{table}[H]
+		\centering
+		\caption{Training SIunitX table}
+		\label{My first SIunitX table}
+		\sisetup{
+			table-alignment-mode = format,
+			table-auto-round = true,
+		}
+		\begin{tabular}{
+				c
+				c 
+				S[table-format = 4.1(1)] 
+				c
+			}
+			\toprule
+			{\headermath{\nu}{\per\cm}} & {\header{Intenzita}} & {\header{Vibrace}} & {\header{Skupina}} \\
+			\midrule
+			3102--3001 & m   & 1452 \pm 0.2 & Ar \\ 
+			1601         & v   & 750.1(5)       & Ar \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+\end{document}

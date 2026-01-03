@@ -3,10 +3,12 @@ import numpy as np
 import struct
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from var_config import ConfigGUI
 from PIL import Image
 from pathlib import Path
+from threading import Thread
 
 
 class ResultsFrame(ctk.CTkScrollableFrame):
@@ -19,7 +21,8 @@ class ResultsFrame(ctk.CTkScrollableFrame):
         self.paused = True
 
         # animation frame
-        self.animation_frame = ctk.CTkFrame(self)
+        self.animation_frame = ctk.CTkFrame(self,
+                                            height=1200)
         self.animation_frame.pack(side="top",
                                   padx=5,
                                   pady=5,
@@ -31,21 +34,20 @@ class ResultsFrame(ctk.CTkScrollableFrame):
                                               height=30,
                                               command=self._start_animation,
                                               text="Pause")
-        play_stop_path = ConfigGUI.get_path(self, r"./icons/play_stop.png")
+        play_stop_path = ConfigGUI.get_path(self, r"./icons/play_pause.png")
         self.play_stop_button.configure(image=ctk.CTkImage(
             light_image=Image.open(play_stop_path)))
         self.play_stop_button.pack(side="top",
                                    padx=5,
                                    pady=5,
-                                   expand=True,
-                                   fill='x')
+                                   expand=False)
 
-        self.anim = Figure(figsize=(7, 7))
+        self.anim = Figure(figsize=(9, 9))
         self.anim_ax = self.anim.add_subplot(111, projection='3d')
         self.anim_ax.set_xlabel("$ L $")
         self.anim_ax.set_ylabel("$ L $")
         self.anim_ax.set_zlabel("$ L $")
-        self.anim_ax.set_title("Lattice of spins")
+        self.anim_ax.set_title("Spins")
 
         self.X, self.Y, self.Z = np.meshgrid(np.arange(0,
                                                        self.L, 1),
@@ -62,7 +64,7 @@ class ResultsFrame(ctk.CTkScrollableFrame):
                                               padx=0,
                                               pady=0,
                                               fill='both',
-                                              expand=True)
+                                              expand=False)
         self.canvas_anim.draw()
         self.toolbar_anim = NavigationToolbar2Tk(self.canvas_anim,
                                                  self.animation_frame)
@@ -71,7 +73,7 @@ class ResultsFrame(ctk.CTkScrollableFrame):
                                padx=0,
                                pady=0,
                                fill='both',
-                               expand=True)
+                               expand=False)
 
         self.slider = ctk.CTkSlider(self.animation_frame,
                                     from_=0,
@@ -85,94 +87,138 @@ class ResultsFrame(ctk.CTkScrollableFrame):
                          expand=True)
 
         self.ani = FuncAnimation(self.anim, self._animation, frames=self.atoms.shape[0],
-                                 interval=500, cache_frame_data=False)
-        self.ani.pause()
-
+                                 interval=250, cache_frame_data=False)
+        
+        self.after(500,
+                   lambda: Thread(target=self._export).start())
+        
         # graph frame
-        self.graph_frame = ctk.CTkFrame(self)
-        self.graph_frame.pack(side="top",
+        self.temp_frame = ctk.CTkFrame(self,
+                                       height=1200)
+        self.temp_frame.pack(side="top",
                               padx=5,
                               pady=5,
                               expand=True,
-                              fill='x')
+                              fill='both')
 
         self.temp_graph = Figure(figsize=(7, 7))
         self.temp_ax = self.temp_graph.add_subplot(111)
         self.temp_ax.set_xlabel("$ i $")
-        self.temp_ax.set_ylabel("$ T $", color="blue")
-        self.temp_ax.plot(self.iterations,
+        self.temp_ax.set_ylabel("$ T $")
+        self.temp_ax.plot(np.arange(self.iterations),
                           self.temp_cycle,
                           color="blue")
         self.temp_ax.axvline(x=0, color='k')
         self.temp_ax.axhline(y=0, color='k')
-        self.temp_ax.set_title("Net Energy $E$")
+        self.temp_ax.set_title("Temperature cycle")
         self.temp_canvas = FigureCanvasTkAgg(self.temp_graph,
-                                             self.graph_frame)
+                                             self.temp_frame)
         self.temp_canvas.get_tk_widget().pack(side='top',
                                               padx=0,
                                               pady=0,
                                               fill='both',
-                                              expand=True)
+                                              expand=False)
         self.toolbar_temp = NavigationToolbar2Tk(self.temp_canvas,
-                                                 self.graph_frame)
+                                                 self.temp_frame)
         self.toolbar_temp.update()
         self.toolbar_temp.pack(side='top',
                                padx=0,
                                pady=0,
                                fill='both',
-                               expand=True)
+                               expand=False)
 
+        self.energy_frame = ctk.CTkFrame(self,
+                                         height=1200)
+        self.energy_frame.pack(side="top",
+                              padx=5,
+                              pady=5,
+                              expand=True,
+                              fill='both')
+        dx = self.temp_cycle[25::100]/4.511 - self.temp_cycle[:-25:100]/4.511
+        dy = self.energy[25::100] - self.energy[:-25:100]
         self.energy_graph = Figure(figsize=(7, 7))
         self.energy_ax = self.energy_graph.add_subplot(111)
-        self.energy_ax.set_xlabel("$ T $")
-        self.energy_ax.set_ylabel("$ E $", color="blue")
-        self.energy_ax.plot(self.iterations,
+        self.energy_ax.set_xlabel(r"$ T\,/\,T_\mathrm{c} $")
+        self.energy_ax.set_ylabel(r"$ E\,/\,\mathbf{\mathrm{k_B}} \, N \, T_\mathrm{c} $")
+        self.energy_ax.plot(self.temp_cycle/4.511,
                             self.energy,
                             color="blue")
-        self.energy_ax.axvline(x=0, color='k')
+        self.energy_ax.quiver(self.temp_cycle[:-25:100]/4.511, 
+                              self.energy[:-25:100], 
+                              dx, dy, 
+                              color='red', 
+                              angles='xy',
+                              scale_units='xy',
+                              scale=5,
+                              width=0.005)
         self.energy_ax.axhline(y=0, color='k')
         self.energy_ax.set_title("Net Energy $E$")
+        self.energy_ax.annotate("Start", xy=(self.temp_cycle[0]/4.511, self.energy[0]), xytext=(5, 5), textcoords='offset points')
+        self.energy_ax.annotate("End", xy=(self.temp_cycle[-1]/4.511, self.energy[-1]), xytext=(5, -10), textcoords='offset points')
         self.energy_canvas = FigureCanvasTkAgg(self.energy_graph,
-                                               self.graph_frame)
+                                               self.energy_frame)
         self.energy_canvas.get_tk_widget().pack(side='top',
                                                 padx=0,
                                                 pady=0,
                                                 fill='both',
-                                                expand=True)
+                                                expand=False)
         self.toolbar_energy = NavigationToolbar2Tk(self.energy_canvas,
-                                                   self.graph_frame)
+                                                   self.energy_frame)
         self.toolbar_energy.update()
         self.toolbar_energy.pack(side='top',
                                  padx=0,
                                  pady=0,
                                  fill='both',
-                                 expand=True)
-
+                                 expand=False)
+        
+        self.mag_frame = ctk.CTkFrame(self,
+                                      height=1200)
+        self.mag_frame.pack(side="top",
+                              padx=5,
+                              pady=5,
+                              expand=True,
+                              fill='both')
+        dx = self.temp_cycle[50::100]/4.511 - self.temp_cycle[:-50:100]/4.511
+        dy = self.magnetization[50::100] - self.magnetization[:-50:100]
         self.magnetization_graph = Figure(figsize=(7, 7))
         self.magnetization_ax = self.magnetization_graph.add_subplot(111)
-        self.magnetization_ax.set_xlabel("$ T $")
-        self.magnetization_ax.set_ylabel("$ M $", color="blue")
-        self.magnetization_ax.plot(self.iterations,
+        self.magnetization_ax.set_xlabel(r"$ T\,/\,T_\mathrm{c} $")
+        self.magnetization_ax.set_ylabel(r"$ M\,/\,\mu \, N $")
+        self.magnetization_ax.plot(self.temp_cycle/4.511,
                                    self.magnetization,
                                    color="blue")
+        self.magnetization_ax.quiver(self.temp_cycle[:-50:100]/4.511, 
+                                     self.magnetization[:-50:100], 
+                                     dx, dy, 
+                                     color='red', 
+                                     angles='xy',
+                                     scale_units='xy',
+                                     scale=5,
+                                     width=0.005)
         self.magnetization_ax.axvline(x=0, color='k')
         self.magnetization_ax.axhline(y=0, color='k')
-        self.magnetization_ax.set_title("Net Energy $E$")
+        self.magnetization_ax.set_title("Net Magnetization $M$")
+        self.magnetization_ax.annotate("Start", xy=(self.temp_cycle[0]/4.511, self.magnetization[0]), xytext=(5, 5), textcoords='offset points')
+        self.magnetization_ax.annotate("End", xy=(self.temp_cycle[-1]/4.511, self.magnetization[-1]), xytext=(5, -10), textcoords='offset points')
         self.magnetization_canvas = FigureCanvasTkAgg(self.magnetization_graph,
-                                                      self.graph_frame)
+                                                      self.mag_frame)
         self.magnetization_canvas.get_tk_widget().pack(side='top',
                                                        padx=0,
                                                        pady=0,
                                                        fill='both',
-                                                       expand=True)
+                                                       expand=False)
         self.toolbar_magnetization = NavigationToolbar2Tk(self.magnetization_canvas,
-                                                          self.graph_frame)
+                                                          self.mag_frame)
         self.toolbar_magnetization.update()
         self.toolbar_magnetization.pack(side='top',
                                         padx=0,
                                         pady=0,
                                         fill='both',
-                                        expand=True)
+                                        expand=False)
+        
+        if not Path(self.dir_path/"energy.png").is_file():
+            self.energy_graph.savefig(self.dir_path/"energy.png")
+            self.magnetization_graph.savefig(self.dir_path/"magnetization.png")
 
     def _start_animation(self, *_):
         if self.paused:
@@ -191,15 +237,18 @@ class ResultsFrame(ctk.CTkScrollableFrame):
         colors = np.where(W > 0, 'red', 'blue')
         self.anim_ax.quiver(self.X, self.Y, self.Z,
                             self.U, self.V, W,
+                            pivot="middle",
                             colors=colors, length=0.6, normalize=True)
-        self.anim_ax.set_title(f"Lattice Spin - Step {frame_idx}")
+        self.anim_ax.set_title(f"Spins - Step {frame_idx}")
         self.anim_ax.set_xlim(0, self.L)
         self.anim_ax.set_ylim(0, self.L)
         self.anim_ax.set_zlim(0, self.L)
+        self.anim_ax.grid(False)
+        self.anim_ax.set_axis_off()
         self.canvas_anim.draw_idle()
 
     def _load_data(self):
-        with open(self.dir_path/".config.bin", "rb") as f:
+        with open(self.dir_path/"config.bin", "rb") as f:
             config = f.read()
         params = struct.unpack("Qfffii", config)
         self.grid_configuration = {
@@ -209,22 +258,57 @@ class ResultsFrame(ctk.CTkScrollableFrame):
             "T_max": params[3],
             "L": params[4],
         }
-        self.L = self.grid_configuration["L"]
 
-        self.temp_cycle = np.fromfile(self.dir_path/".temp_cycle.bin",
+        self.L = self.grid_configuration["L"]
+        self.iterations = self.grid_configuration["run_time"]
+
+        self.temp_cycle = np.fromfile(self.dir_path/"temp_cycle.bin",
                                       dtype=np.float32)
 
-        raw_atoms = np.fromfile(self.dir_path/".atoms.bin",
+        raw_atoms = np.fromfile(self.dir_path/"atoms.bin",
                                 dtype=np.int8)
         self.atoms = raw_atoms.reshape((-1,
                                         self.grid_configuration["L"],
                                         self.grid_configuration["L"],
                                         self.grid_configuration["L"]))
 
-        raw_meas = np.fromfile(self.dir_path/".measurment.bin",
-                               dtype=np.int8)
-        raw_meas = raw_meas.reshape(-1, 2)
-        self.magnetization = raw_meas[:, 0]
-        self.energy = raw_meas[:, 1]
+        self.magnetization = np.fromfile(self.dir_path/"measurment.bin",
+                                         dtype=np.int64,
+                                         count=self.iterations)
+        self.energy = np.fromfile(self.dir_path/"measurment.bin",
+                                  dtype=np.float32,
+                                  count=self.iterations,
+                                  offset=self.iterations*np.dtype(np.int64).itemsize)
 
-        self.iterations = np.arange(len(self.magnetization))
+    def _export(self):
+        if not Path(self.dir_path/"ising_simulation.mp4").is_file():
+            print("Exporting...")
+            fig_export = plt.figure(figsize=(8, 8))
+            ax_export = fig_export.add_subplot(111, projection='3d')
+            
+            def update_export(frame_idx):
+                print(f"{frame_idx+1}/{len(self.atoms)}")
+                ax_export.clear()
+                W = self.atoms[frame_idx].flatten()
+                colors = np.where(W > 0, 'red', 'blue')
+                ax_export.quiver(self.X, self.Y, self.Z,
+                                    self.U, self.V, W,
+                                    pivot="middle",
+                                    colors=colors, length=0.6, normalize=True)
+                ax_export.set_title(f"Spins - Step {frame_idx}")
+                ax_export.set_xlim(0, self.L)
+                ax_export.set_ylim(0, self.L)
+                ax_export.set_zlim(0, self.L)
+                ax_export.grid(False)
+                ax_export.set_axis_off()
+
+            ani_export = FuncAnimation(fig_export, update_export, frames=len(self.atoms))
+            ani_export.save(
+                self.dir_path / "ising_simulation.mp4", 
+                writer="ffmpeg", 
+                fps=7, 
+                dpi=200, 
+                bitrate=5000
+            )
+            plt.close(fig_export)
+            print(f"Export finished {self.dir_path}/ising_simulation.mp4")

@@ -1,4 +1,5 @@
 from visualization import Simulant
+import numpy as np
 
 
 def main():

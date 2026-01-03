@@ -19,16 +19,16 @@ class Simulant(ctk.CTk, TkinterDnD.DnDWrapper):
                                           0),
             Variables.INIT_METHOD: ctk.IntVar(self, InitMethods.WARM_UP),
             Variables.TEMP_CYCLE: ctk.IntVar(self, Temperature.CONSTANT),
-            Variables.TEMPERATURE: ctk.StringVar(self, "1.5-2.8"),
+            Variables.TEMPERATURE: ctk.StringVar(self, "1.0-6.0"),
             Variables.EXCHANGE_ENERGY: ctk.StringVar(self, "1"),
             Variables.LATTICE_SIZE: ctk.StringVar(self, "40"),
-            Variables.RUN_TIME: ctk.StringVar(self, "1024"),
+            Variables.RUN_TIME: ctk.StringVar(self, "2048"),
             Variables.DATA_PATH: ctk.StringVar(self,
                                                str(Path(__file__).resolve().parent)),
         }
 
         self.title("Monte Carlo simulation – Ising model")
-        self.geometry("512x512")
+        self.geometry("512x712")
         self.resizable(width=False, height=False)
         ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("green")
