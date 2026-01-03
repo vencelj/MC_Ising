@@ -36,7 +36,7 @@ float totalEnergy(struct SimConfig *sim, struct SimMeas *meas){
     return energyTotal;
 }
 
-void monteCarlo(struct SimConfig *sim, struct SimMeas *meas, uint64_t iterCounter, bool savedMeas, bool equilibrium){
+void monteCarlo(struct SimConfig *sim, struct SimMeas *meas, uint64_t iterCounter, bool savedMeas){
     uint32_t L = sim->L;
     float J = sim->J;
     uint64_t N = (uint64_t)L*L*L;
@@ -53,67 +53,55 @@ void monteCarlo(struct SimConfig *sim, struct SimMeas *meas, uint64_t iterCounte
             }
         }
         else{
-            if (equilibrium){
-                energyIter = meas->energy[iterCounter];
-                magnetizationIter = meas->magnetization[iterCounter];
-            }
-            else {
-                energyIter = meas->energy[sim->run_time-1];
-                magnetizationIter = meas->magnetization[sim->run_time-1];
-            }
+            energyIter = meas->energy[sim->run_time-1];
+            magnetizationIter = meas->magnetization[sim->run_time-1];
         }
     }
     else{
-            if (equilibrium){
-                energyIter = meas->energy[iterCounter];
-                magnetizationIter = meas->magnetization[iterCounter];
-            }
-            else {
-                energyIter = meas->energy[iterCounter-1];
-                magnetizationIter = meas->magnetization[iterCounter-1];
-            }
+        energyIter = meas->energy[iterCounter-1];
+        magnetizationIter = meas->magnetization[iterCounter-1];
     }  
 
     float energyLUT[7]; 
     float probLUT[7]; 
     for (int s = -6; s <= 6; s += 2) {
-        int idx = (s + 6) / 2;
         float deltaE = 2.0f * J * (float)s;
-        
-        probLUT[idx] = 1.0f / (1.0f + exp(-deltaE/(bolzmannConst*temp)));
+        probLUT[(s + 6) / 2] = 1.0f / (1.0f + exp(-deltaE/(bolzmannConst*temp)));
     }
 
-    for (uint64_t i=0; i<N;i++){
-        uint32_t a = rand() % L; 
-        uint32_t b = rand() % L; 
-        uint32_t c = rand() % L;
-
-        int am = (a == 0) ? L - 1 : a - 1;
-        int ap = (a == L - 1) ? 0 : a + 1;
-        int bm = (b == 0) ? L - 1 : b - 1;
-        int bp = (b == L - 1) ? 0 : b + 1;
-        int cm = (c == 0) ? L - 1 : c - 1;
-        int cp = (c == L - 1) ? 0 : c + 1;
-
-        int8_t spin = meas->atoms[a*L*L + b*L + c];
-        int8_t spinNeighbours = meas->atoms[am*L*L + b*L + c]
-                                + meas->atoms[ap*L*L + b*L + c]
-                                + meas->atoms[a*L*L + bm*L + c]
-                                + meas->atoms[a*L*L + bp*L + c]
-                                + meas->atoms[a*L*L + b*L + cm]
-                                + meas->atoms[a*L*L + b*L + cp];
-        
-        
-        if (PROB() < probLUT[(spinNeighbours + 6) / 2]) {
-            meas->atoms[a*L*L + b*L + c] = 1;
-        } else {
-            meas->atoms[a*L*L + b*L + c] = -1;
-        }
-        
-        if (spin != meas->atoms[a*L*L + b*L + c]){
-            float dE = -J * (float)spinNeighbours * (float)(meas->atoms[a*L*L + b*L + c] - spin);
-            energyIter += dE; 
-            magnetizationIter += (meas->atoms[a*L*L + b*L + c] - spin);
+    for (int8_t eq = 0; eq<10; eq++){
+        for (uint64_t i=0; i<N;i++){
+            uint32_t a = rand() % L; 
+            uint32_t b = rand() % L; 
+            uint32_t c = rand() % L;
+    
+            int am = (a == 0) ? L - 1 : a - 1;
+            int ap = (a == L - 1) ? 0 : a + 1;
+            int bm = (b == 0) ? L - 1 : b - 1;
+            int bp = (b == L - 1) ? 0 : b + 1;
+            int cm = (c == 0) ? L - 1 : c - 1;
+            int cp = (c == L - 1) ? 0 : c + 1;
+    
+            int8_t spin = meas->atoms[a*L*L + b*L + c];
+            int8_t spinNeighbours = meas->atoms[am*L*L + b*L + c]
+                                    + meas->atoms[ap*L*L + b*L + c]
+                                    + meas->atoms[a*L*L + bm*L + c]
+                                    + meas->atoms[a*L*L + bp*L + c]
+                                    + meas->atoms[a*L*L + b*L + cm]
+                                    + meas->atoms[a*L*L + b*L + cp];
+            
+            
+            if (PROB() < probLUT[(spinNeighbours + 6) / 2]) {
+                meas->atoms[a*L*L + b*L + c] = 1;
+            } else {
+                meas->atoms[a*L*L + b*L + c] = -1;
+            }
+            
+            if (spin != meas->atoms[a*L*L + b*L + c]){
+                float dE = -J * (float)spinNeighbours * (float)(meas->atoms[a*L*L + b*L + c] - spin);
+                energyIter += dE; 
+                magnetizationIter += (meas->atoms[a*L*L + b*L + c] - spin);
+            }
         }
     }
 
@@ -145,8 +133,6 @@ int main(int argc, char **argv){
 
     load_atoms(&sim, meas.atoms, dirPath);
 
-    bool equilibrium;
-    
     if (sim.init == WARM_UP){
         load_temps(&sim, meas.temps, dirPath);
         float startTemp = 6.0f;
@@ -154,19 +140,11 @@ int main(int argc, char **argv){
         float step = (startTemp-targetTemp)/(float)sim.run_time;
         for (uint64_t i=0;i<sim.run_time;i++){
             meas.temps[i] = startTemp + i*step;
-            equilibrium = false;
-            for (int eq = 0; eq < 20; eq++){
-                monteCarlo(&sim, &meas, i, false, equilibrium);
-                equilibrium = true;
-            }
+            monteCarlo(&sim, &meas, i, false);
         }
         load_temps(&sim, meas.temps, dirPath);
         for (uint64_t i=0;i<sim.run_time;i++){
-            equilibrium = false;
-            for (int eq = 0; eq < 20; eq++){
-                monteCarlo(&sim, &meas, i, true, equilibrium);
-                equilibrium = true;
-            }
+            monteCarlo(&sim, &meas, i, true);
             if (i%10==0){
                 save_atoms(&sim, meas.atoms, dirPath);
             }
@@ -175,11 +153,7 @@ int main(int argc, char **argv){
     else{
         load_temps(&sim, meas.temps, dirPath);
         for (uint64_t i=0;i<sim.run_time;i++){
-            equilibrium = false;
-            for (int eq = 0; eq < 20; eq++){
-                monteCarlo(&sim, &meas, i, false, equilibrium);
-                equilibrium = true;
-            }
+            monteCarlo(&sim, &meas, i, false);
             if (i%10==0){
                 save_atoms(&sim, meas.atoms, dirPath);
             }

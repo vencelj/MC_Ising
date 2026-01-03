@@ -1,0 +1,6 @@
+run_time:2048
+J:1.0
+T_min:2.0
+T_max:6.0
+L:40
+init:1

@@ -88,6 +88,7 @@ class ResultsFrame(ctk.CTkScrollableFrame):
 
         self.ani = FuncAnimation(self.anim, self._animation, frames=self.atoms.shape[0],
                                  interval=250, cache_frame_data=False)
+        self.ani.pause()
         
         self.after(500,
                    lambda: Thread(target=self._export).start())
