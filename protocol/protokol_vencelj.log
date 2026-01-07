@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.14)  7 JAN 2026 15:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.14)  7 JAN 2026 16:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1275,17 +1275,24 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `protokol_vencelj.out' has not changed.
 (rerunfilecheck)             Checksum: 2EB1757D12F37A87B79EA1E948A870E3;2002.
+
+Package biblatex Warning: Please rerun LaTeX.
+
 Package logreq Info: Writing requests to 'protokol_vencelj.run.xml'.
 \openout1 = `protokol_vencelj.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43851 strings out of 474222
- 1006695 string characters out of 5748733
+ 43857 strings out of 474222
+ 1006912 string characters out of 5748733
  1934975 words of memory out of 5000000
- 65476 multiletter control sequences out of 15000+600000
+ 65481 multiletter control sequences out of 15000+600000
  569597 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,8n,107p,1131b,2783s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1307,10 +1314,10 @@ public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
 /texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/p
 ublic/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1
 000.pfb>
-Output written on protokol_vencelj.pdf (5 pages, 274755 bytes).
+Output written on protokol_vencelj.pdf (5 pages, 278392 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 236 PDF objects out of 1000 (max. 8388607)
+ 186 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
  130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

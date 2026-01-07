@@ -138,6 +138,38 @@
       \verb %5Curl%7Bhttps://doi.org/10.1088/0305-4470/31/29/007%7D
       \endverb
     \endentry
+    \entry{CambridgeCATAM11pt2}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a75d9e30e891abd776972c07c5ef5224}{%
+           family={{University of Cambridge}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Faculty of Mathematics}%
+      }
+      \strng{namehash}{a75d9e30e891abd776972c07c5ef5224}
+      \strng{fullhash}{a75d9e30e891abd776972c07c5ef5224}
+      \strng{bibnamehash}{a75d9e30e891abd776972c07c5ef5224}
+      \strng{authorbibnamehash}{a75d9e30e891abd776972c07c5ef5224}
+      \strng{authornamehash}{a75d9e30e891abd776972c07c5ef5224}
+      \strng{authorfullhash}{a75d9e30e891abd776972c07c5ef5224}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Mathematical Tripos, Undergraduate Manual}
+      \field{title}{Computational Projects, Part II: 11.2 The Ising Model}
+      \field{type}{techreport}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.maths.cam.ac.uk/undergrad/catam/II/11pt2.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.maths.cam.ac.uk/undergrad/catam/II/11pt2.pdf
+      \endverb
+    \endentry
     \entry{Viswanathan2022}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=69800e535666864d1501d66412c3d415}{%

@@ -1,17 +1,17 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'protokol_vencelj.blg'
-[25] biber:340> INFO - === St led  7, 2026, 15:36:08
+[26] biber:340> INFO - === St led  7, 2026, 16:11:10
 [31] Biber.pm:419> INFO - Reading 'protokol_vencelj.bcf'
-[50] Biber.pm:979> INFO - Found 4 citekeys in bib section 0
-[54] Biber.pm:4419> INFO - Processing section 0
-[58] Biber.pm:4610> INFO - Looking for bibtex file 'protocol-ref.bib' for section 0
-[58] bibtex.pm:1713> INFO - LaTeX decoding ...
-[62] bibtex.pm:1519> INFO - Found BibTeX data source 'protocol-ref.bib'
-[82] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
-[82] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[82] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'cs-CZ'
-[85] bbl.pm:660> INFO - Writing 'protokol_vencelj.bbl' with encoding 'UTF-8'
-[86] bbl.pm:763> INFO - Output to protokol_vencelj.bbl
-[86] Biber.pm:131> WARN - legacy month field 'jul' in entry 'Hasenbusch_1998' is not an integer - this will probably not sort properly.
-[86] Biber.pm:131> WARN - legacy month field 'Sep' in entry 'PhysRevB.44.5081' is not an integer - this will probably not sort properly.
-[86] Biber.pm:133> INFO - WARNINGS: 2
+[52] Biber.pm:979> INFO - Found 5 citekeys in bib section 0
+[56] Biber.pm:4419> INFO - Processing section 0
+[60] Biber.pm:4610> INFO - Looking for bibtex file 'protocol-ref.bib' for section 0
+[61] bibtex.pm:1713> INFO - LaTeX decoding ...
+[64] bibtex.pm:1519> INFO - Found BibTeX data source 'protocol-ref.bib'
+[87] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
+[87] UCollate.pm:68> INFO - Overriding locale 'cs-CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[87] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'cs-CZ'
+[91] bbl.pm:660> INFO - Writing 'protokol_vencelj.bbl' with encoding 'UTF-8'
+[92] bbl.pm:763> INFO - Output to protokol_vencelj.bbl
+[92] Biber.pm:131> WARN - legacy month field 'jul' in entry 'Hasenbusch_1998' is not an integer - this will probably not sort properly.
+[92] Biber.pm:131> WARN - legacy month field 'Sep' in entry 'PhysRevB.44.5081' is not an integer - this will probably not sort properly.
+[92] Biber.pm:133> INFO - WARNINGS: 2
