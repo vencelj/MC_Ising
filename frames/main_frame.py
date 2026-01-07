@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 from pathlib import Path
 import webbrowser
 from var_config import ConfigGUI, Variables
-from grid import InitMethods
 from processing_mannager import generate_protocol
 
 
@@ -200,7 +199,7 @@ class MainFrame(ctk.CTkFrame, TkinterDnD.DnDWrapper):
 
     def _open_documentation(self, *_):
         doc_path = ConfigGUI.get_path(self,
-                                      r"doc.pdf")
+                                      r"./protocol/protokol_vencelj.pdf")
         webbrowser.open_new(f"file://{doc_path}")
 
     def _open_new(self, *_):
@@ -210,11 +209,6 @@ class MainFrame(ctk.CTkFrame, TkinterDnD.DnDWrapper):
         else:
             init_dir = Path(self.master.winfo_toplevel().master_getter(
                 Variables.DATA_PATH).get()).parents[0]
-
-        filetypes = [
-            ("Text Files", "*.txt"),
-            ("All Files", "*.*")
-        ]
 
         im_path = askdirectory(initialdir=init_dir,
                                title="Select datafile",

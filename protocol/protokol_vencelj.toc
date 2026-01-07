@@ -1,0 +1,25 @@
+\babel@toc {czech}{}\relax 
+\contentsline {section}{\numberline {1}Úvod}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Isingův model}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Monte Carlo}{1}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Ukázka důkazu MC}{2}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Okrajové podmínky}{2}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Typy algoritmů}{2}{subsubsection.1.2.3}%
+\contentsline {section}{\numberline {2}Program}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Simulace}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Uživatelské rozhraní}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Výsledky}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Konstantní teplota}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Teplotní cykly}{2}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Antiferomagnet}{2}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Hystereze – vliv počátečních podmínek na průběh simulace}{2}{subsection.3.4}%
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 

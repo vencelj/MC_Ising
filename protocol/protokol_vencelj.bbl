@@ -1,0 +1,203 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{PhysRevB.44.5081}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=0eaec75ee6f82f6c80c53ebda99a2e85}{%
+           family={Ferrenberg},
+           familyi={F\bibinitperiod},
+           given={Alan\bibnamedelima M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7a3526ee655fb3cc756c931cf58870a5}{%
+           family={Landau},
+           familyi={L\bibinitperiod},
+           given={D.\bibnamedelimi P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{071ceeaeaa505ac274f22f791a17a27b}
+      \strng{fullhash}{93d8c96e9f442fc72c872bd1ad318922}
+      \strng{bibnamehash}{93d8c96e9f442fc72c872bd1ad318922}
+      \strng{authorbibnamehash}{93d8c96e9f442fc72c872bd1ad318922}
+      \strng{authornamehash}{071ceeaeaa505ac274f22f791a17a27b}
+      \strng{authorfullhash}{93d8c96e9f442fc72c872bd1ad318922}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{10}
+      \field{journaltitle}{Phys. Rev. B}
+      \field{month}{9}
+      \field{title}{Critical behavior of the three-dimensional Ising model: A high-resolution Monte Carlo study}
+      \field{volume}{44}
+      \field{year}{1991}
+      \field{pages}{5081\bibrangedash 5091}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.44.5081
+      \endverb
+      \verb{urlraw}
+      \verb \url{https://link.aps.org/doi/10.1103/PhysRevB.44.5081}
+      \endverb
+      \verb{url}
+      \verb %5Curl%7Bhttps://link.aps.org/doi/10.1103/PhysRevB.44.5081%7D
+      \endverb
+    \endentry
+    \entry{FitzpatrickIsing}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f7f30a3a440fa574307351e6690550fa}{%
+           family={Fitzpatrick},
+           familyi={F\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f7f30a3a440fa574307351e6690550fa}
+      \strng{fullhash}{f7f30a3a440fa574307351e6690550fa}
+      \strng{bibnamehash}{f7f30a3a440fa574307351e6690550fa}
+      \strng{authorbibnamehash}{f7f30a3a440fa574307351e6690550fa}
+      \strng{authornamehash}{f7f30a3a440fa574307351e6690550fa}
+      \strng{authorfullhash}{f7f30a3a440fa574307351e6690550fa}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://farside.ph.utexas.edu/teaching/329/lectures/node105.html}}
+      \field{title}{Computational Physics: The Ising Model}
+      \field{year}{2006}
+    \endentry
+    \entry{Hasenbusch_1998}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=76abad47008d4953634de601cdef8855}{%
+           family={Hasenbusch},
+           familyi={H\bibinitperiod},
+           given={M},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f04501fa4d79d5a5218de6f95581f748}{%
+           family={Pinn},
+           familyi={P\bibinitperiod},
+           given={K},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{671076b34988817478d07cc2aea33303}
+      \strng{fullhash}{656951936cca5d2acaf17cbd9d40b647}
+      \strng{bibnamehash}{656951936cca5d2acaf17cbd9d40b647}
+      \strng{authorbibnamehash}{656951936cca5d2acaf17cbd9d40b647}
+      \strng{authornamehash}{671076b34988817478d07cc2aea33303}
+      \strng{authorfullhash}{656951936cca5d2acaf17cbd9d40b647}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We analyse Monte Carlo data for the energy and specific heat at and close to the critical point of the 3D cubic Ising model. From the finite-size scaling of the energy E and the specific heat C at criticality we obtain the estimate . Furthermore, one obtains precise estimates for the `backgrounds' (nonsingular parts) and . Fitting solely off-critical energy estimates to a scaling law, we find, depending on the choice of the reduced temperature, either and , or and . Including information from the data at , we obtain the estimate . We also determine the universal combination in both phases.}
+      \field{journaltitle}{Journal of Physics A: Mathematical and General}
+      \field{month}{7}
+      \field{number}{29}
+      \field{title}{, , , and from 3D Ising energy and specific heat}
+      \field{volume}{31}
+      \field{year}{1998}
+      \field{pages}{6157}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/0305-4470/31/29/007
+      \endverb
+      \verb{urlraw}
+      \verb \url{https://doi.org/10.1088/0305-4470/31/29/007}
+      \endverb
+      \verb{url}
+      \verb %5Curl%7Bhttps://doi.org/10.1088/0305-4470/31/29/007%7D
+      \endverb
+    \endentry
+    \entry{Viswanathan2022}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=69800e535666864d1501d66412c3d415}{%
+           family={Viswanathan},
+           familyi={V\bibinitperiod},
+           given={Gandhimohan\bibnamedelima M.},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b464f63a587df0f7af62480c90c1809}{%
+           family={Portillo},
+           familyi={P\bibinitperiod},
+           given={Marco\bibnamedelimb Aurelio\bibnamedelima G.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e08af81168b6d26456173da5127081ba}{%
+           family={Raposo},
+           familyi={R\bibinitperiod},
+           given={Ernesto\bibnamedelima P.},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=786426332f6a10f265f82962c3a5d109}{%
+           family={Luz},
+           familyi={L\bibinitperiod},
+           given={Marcos\bibnamedelimb G.\bibnamedelimi E.},
+           giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0,
+           prefix={da},
+           prefixi={d\bibinitperiod},
+           prefixun=0}}%
+      }
+      \strng{namehash}{7e82511ca1ad318c36901d454dea0f90}
+      \strng{fullhash}{a3ba6f4da89ca147b02462cfe9ee7354}
+      \strng{bibnamehash}{a3ba6f4da89ca147b02462cfe9ee7354}
+      \strng{authorbibnamehash}{a3ba6f4da89ca147b02462cfe9ee7354}
+      \strng{authornamehash}{7e82511ca1ad318c36901d454dea0f90}
+      \strng{authorfullhash}{a3ba6f4da89ca147b02462cfe9ee7354}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An exact solution of the Ising model on the simple cubic lattice is one of the long-standing open problems in rigorous statistical mechanics. Indeed, it is generally believed that settling it would constitute a methodological breakthrough, fomenting great prospects for further application, similarly to what happened when Lars Onsager solved the two-dimensional model eighty years ago. Hence, there have been many attempts to find analytic expressions for the exact partition function Z, but all such attempts have failed due to unavoidable conceptual or mathematical obstructions. Given the importance of this simple yet paradigmatic model, here we set out clear-cut criteria for any claimed exact expression for Z to be minimally plausible. Specifically, we present six necessary—but not sufficient—conditions that Z must satisfy. These criteria will allow very quick plausibility checks of future claims. As illustrative examples, we discuss previous mistaken “solutions”, unveiling their shortcomings.}
+      \field{issn}{1099-4300}
+      \field{journaltitle}{Entropy}
+      \field{number}{11}
+      \field{title}{What Does It Take to Solve the 3D Ising Model? Minimal Necessary Conditions for a Valid Solution}
+      \field{volume}{24}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.3390/e24111665
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/1099-4300/24/11/1665
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/1099-4300/24/11/1665
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

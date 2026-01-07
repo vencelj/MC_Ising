@@ -11,6 +11,14 @@ from pathlib import Path
 from threading import Thread
 
 
+plt.rcParams.update({
+"text.usetex": True,
+"font.family": "serif",
+"font.serif": ["Computer Modern Roman"],
+"text.latex.preamble": r'\usepackage{siunitx}',
+})
+
+
 class ResultsFrame(ctk.CTkScrollableFrame):
     def __init__(self, master: ctk.CTkBaseClass,
                  dir_path: Path):
@@ -153,6 +161,8 @@ class ResultsFrame(ctk.CTkScrollableFrame):
                               scale=5,
                               width=0.005)
         self.energy_ax.axhline(y=0, color='k')
+        self.energy_ax.axvline(x=0, color='k')
+        self.energy_ax.axvline(x=1, color='k', linestyle="--")
         self.energy_ax.set_title("Net Energy $E$")
         self.energy_ax.annotate("Start", xy=(self.temp_cycle[0]/4.511, self.energy[0]), xytext=(5, 5), textcoords='offset points')
         self.energy_ax.annotate("End", xy=(self.temp_cycle[-1]/4.511, self.energy[-1]), xytext=(5, -10), textcoords='offset points')
@@ -197,6 +207,7 @@ class ResultsFrame(ctk.CTkScrollableFrame):
                                      scale=5,
                                      width=0.005)
         self.magnetization_ax.axvline(x=0, color='k')
+        self.magnetization_ax.axvline(x=1, color='k', linestyle="--")
         self.magnetization_ax.axhline(y=0, color='k')
         self.magnetization_ax.set_title("Net Magnetization $M$")
         self.magnetization_ax.annotate("Start", xy=(self.temp_cycle[0]/4.511, self.magnetization[0]), xytext=(5, 5), textcoords='offset points')
@@ -220,6 +231,7 @@ class ResultsFrame(ctk.CTkScrollableFrame):
         if not Path(self.dir_path/"energy.png").is_file():
             self.energy_graph.savefig(self.dir_path/"energy.png")
             self.magnetization_graph.savefig(self.dir_path/"magnetization.png")
+            self.temp_graph.savefig(self.dir_path/"temp_cycle.png")
 
     def _start_animation(self, *_):
         if self.paused:

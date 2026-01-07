@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.14)  2 JAN 2026 17:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.14)  7 JAN 2026 15:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -147,6 +147,17 @@ LaTeX Info: Redefining \Relbar on input line 971.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -801,10 +812,12 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2023/07/08 v1.2f Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup4
-\symboldletters=\mathgroup5
-\symboldsymbols=\mathgroup6
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
 Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+Package bm Info: No bold for \U/msa/m/n, using \pmb.
+Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/makecell/makecell.sty
@@ -813,27 +826,316 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \c@nlinenum=\count343
 \TeXr@lab=\toks46
 )
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count344
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count345
+\c@listtotal=\count346
+\c@listcount=\count347
+\c@liststart=\count348
+\c@liststop=\count349
+\c@citecount=\count350
+\c@citetotal=\count351
+\c@multicitecount=\count352
+\c@multicitetotal=\count353
+\c@instcount=\count354
+\c@maxnames=\count355
+\c@minnames=\count356
+\c@maxitems=\count357
+\c@minitems=\count358
+\c@citecounter=\count359
+\c@maxcitecounter=\count360
+\c@savedcitecounter=\count361
+\c@uniquelist=\count362
+\c@uniquename=\count363
+\c@refsection=\count364
+\c@refsegment=\count365
+\c@maxextratitle=\count366
+\c@maxextratitleyear=\count367
+\c@maxextraname=\count368
+\c@maxextradate=\count369
+\c@maxextraalpha=\count370
+\c@abbrvpenalty=\count371
+\c@highnamepenalty=\count372
+\c@lownamepenalty=\count373
+\c@maxparens=\count374
+\c@parenlevel=\count375
+\blx@tempcnta=\count376
+\blx@tempcntb=\count377
+\blx@tempcntc=\count378
+\c@blx@maxsection=\count379
+\blx@maxsegment@0=\count380
+\blx@notetype=\count381
+\blx@parenlevel@text=\count382
+\blx@parenlevel@foot=\count383
+\blx@sectionciteorder@0=\count384
+\blx@sectionciteorderinternal@0=\count385
+\blx@entrysetcounter=\count386
+\blx@biblioinstance=\count387
+\labelnumberwidth=\skip58
+\labelalphawidth=\skip59
+\biblabelsep=\skip60
+\bibitemsep=\skip61
+\bibnamesep=\skip62
+\bibinitsep=\skip63
+\bibparsep=\skip64
+\bibhang=\skip65
+\blx@bcfin=\read4
+\blx@bcfout=\write4
+\blx@langwohyphens=\language90
+\c@mincomprange=\count388
+\c@maxcomprange=\count389
+\c@mincompwidth=\count390
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'iso-authoryear.dbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-iso690/iso-authoryear.dbx
+File: iso-authoryear.dbx 2022/03/20 v0.4.1 ISO 690 biblatex data model extensio
+n
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count391
+\c@savedafterword=\count392
+\c@annotator=\count393
+\c@savedannotator=\count394
+\c@author=\count395
+\c@savedauthor=\count396
+\c@bookauthor=\count397
+\c@savedbookauthor=\count398
+\c@commentator=\count399
+\c@savedcommentator=\count400
+\c@editor=\count401
+\c@savededitor=\count402
+\c@editora=\count403
+\c@savededitora=\count404
+\c@editorb=\count405
+\c@savededitorb=\count406
+\c@editorc=\count407
+\c@savededitorc=\count408
+\c@foreword=\count409
+\c@savedforeword=\count410
+\c@holder=\count411
+\c@savedholder=\count412
+\c@introduction=\count413
+\c@savedintroduction=\count414
+\c@namea=\count415
+\c@savednamea=\count416
+\c@nameb=\count417
+\c@savednameb=\count418
+\c@namec=\count419
+\c@savednamec=\count420
+\c@translator=\count421
+\c@savedtranslator=\count422
+\c@shortauthor=\count423
+\c@savedshortauthor=\count424
+\c@shorteditor=\count425
+\c@savedshorteditor=\count426
+\c@supervisor=\count427
+\c@savedsupervisor=\count428
+\c@labelname=\count429
+\c@savedlabelname=\count430
+\c@institution=\count431
+\c@savedinstitution=\count432
+\c@lista=\count433
+\c@savedlista=\count434
+\c@listb=\count435
+\c@savedlistb=\count436
+\c@listc=\count437
+\c@savedlistc=\count438
+\c@listd=\count439
+\c@savedlistd=\count440
+\c@liste=\count441
+\c@savedliste=\count442
+\c@listf=\count443
+\c@savedlistf=\count444
+\c@location=\count445
+\c@savedlocation=\count446
+\c@organization=\count447
+\c@savedorganization=\count448
+\c@origlocation=\count449
+\c@savedoriglocation=\count450
+\c@origpublisher=\count451
+\c@savedorigpublisher=\count452
+\c@publisher=\count453
+\c@savedpublisher=\count454
+\c@language=\count455
+\c@savedlanguage=\count456
+\c@origlanguage=\count457
+\c@savedoriglanguage=\count458
+\c@pageref=\count459
+\c@savedpageref=\count460
+\shorthandwidth=\skip66
+\shortjournalwidth=\skip67
+\shortserieswidth=\skip68
+\shorttitlewidth=\skip69
+\shortauthorwidth=\skip70
+\shorteditorwidth=\skip71
+\locallabelnumberwidth=\skip72
+\locallabelalphawidth=\skip73
+\localshorthandwidth=\skip74
+\localshortjournalwidth=\skip75
+\localshortserieswidth=\skip76
+\localshorttitlewidth=\skip77
+\localshortauthorwidth=\skip78
+\localshorteditorwidth=\skip79
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count461
+\c@textcitetotal=\count462
+\c@textcitemaxnames=\count463
+\c@biburlbigbreakpenalty=\count464
+\c@biburlbreakpenalty=\count465
+\c@biburlnumpenalty=\count466
+\c@biburlucpenalty=\count467
+\c@biburllcpenalty=\count468
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count469
+)
+Package biblatex Info: Trying to load bibliography style 'iso-authoryear'...
+Package biblatex Info: ... file 'iso-authoryear.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-iso690/iso-authoryear.bbx
+File: iso-authoryear.bbx 2022/03/20 v0.4.1 ISO 690 biblatex bibliography style
+Package biblatex Info: Trying to load bibliography style 'iso'...
+Package biblatex Info: ... file 'iso.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-iso690/iso.bbx
+File: iso.bbx 2022/03/20 v0.4.1 ISO 690 biblatex bibliography style
+Package biblatex-iso690 Info: Space colon enabled: false.
+Package biblatex-iso690 Info: Total pages enabled: false.
+Package biblatex-iso690 Info: Short numeration enabled: false.
+Package biblatex-iso690 Info: Thesis info in the notes section enabled: true.
+Package biblatex-iso690 Info: URL field enabled: true.
+Package biblatex-iso690 Info: ISBN field enabled: true.
+Package biblatex-iso690 Info: DOI field enabled: true.
+Package biblatex-iso690 Info: eprint field enabled: true.
+Package biblatex-iso690 Info: Article publication info enabled: false.
+Package biblatex-iso690 Info: Use current language for the bibliography: false.
+
+Package biblatex-iso690 Info: Use no end dot for the bibliography entries: fals
+e.
+Package biblatex Info: Delimiter 'multinamedelim' in context '' already defined
+, overwriting.
+Package biblatex Info: Delimiter 'finalnamedelim' in context '' already defined
+, overwriting.
+Package biblatex Info: Delimiter 'editortypedelim' in context '' already define
+d, overwriting.
+Package biblatex Info: Delimiter 'authortypedelim' in context '' already define
+d, overwriting.
+)
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'bib' already defin
+ed, overwriting.
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'biblist' already d
+efined, overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context 'bib' already def
+ined, overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context 'biblist' already
+ defined, overwriting.
+)
+Package biblatex Info: Trying to load citation style 'iso-authoryear'...
+Package biblatex Info: ... file 'iso-authoryear.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-iso690/iso-authoryear.cbx
+File: iso-authoryear.cbx 2022/03/20 v0.4.1 ISO 690 biblatex citation style
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+File: authoryear.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load citation style 'iso-fullcite'...
+Package biblatex Info: ... file 'iso-fullcite.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-iso690/iso-fullcite.cbx
+File: iso-fullcite.cbx 2022/03/20 v0.4.1 ISO 690 biblatex fullcite modification
+s
+Package biblatex Info: Redefining '\fullcite'.
+Package biblatex Info: Redefining '\footfullcite'.
+)
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
+ overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context '' already define
+d, overwriting.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2024-01-22 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+))
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count470
+\@quotereset=\count471
 (./protokol_vencelj.aux)
 \openout1 = `protokol_vencelj.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -871,16 +1173,16 @@ LaTeX Font Info:    ... okay on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count344
+\scratchcounter=\count472
 \scratchdimen=\dimen307
 \scratchbox=\box78
-\nofMPsegments=\count345
-\nofMParguments=\count346
+\nofMPsegments=\count473
+\nofMParguments=\count474
 \everyMPshowfont=\toks47
-\MPscratchCnt=\count347
+\MPscratchCnt=\count475
 \MPscratchDim=\dimen308
-\MPnumerator=\count348
-\makeMPintoPDFobject=\count349
+\MPnumerator=\count476
+\makeMPintoPDFobject=\count477
 \everyMPtoPDFconversion=\toks48
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -895,67 +1197,120 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 55.
+ on input line 69.
 
 Package translations Info: no dictionary file `translations-basic-dictionary-cz
-ech.trsl' found. on input line 55.
-Package hyperref Info: Link coloring OFF on input line 55.
+ech.trsl' found. on input line 69.
+Package hyperref Info: Link coloring OFF on input line 69.
 (./protokol_vencelj.out) (./protokol_vencelj.out)
-\@outlinefile=\write4
-\openout4 = `protokol_vencelj.out'.
+\@outlinefile=\write5
+\openout5 = `protokol_vencelj.out'.
 
-<logoVSCHT_ikona.png, id=11, 42.6393pt x 42.6393pt>
+Package biblatex Info: Trying to load language 'czech' -> 'czech-iso'...
+Package biblatex Info: ... file 'czech-iso.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-iso690/czech-iso.lbx
+File: czech-iso.lbx 2022/03/20 v0.4.1 ISO 690 extended biblatex localization
+Package biblatex Info: Trying to load language 'czech'...
+Package biblatex Info: ... file 'czech.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/czech.lbx
+File: czech.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'czech'...
+Package biblatex Info: ... file 'czech.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/czech.lbx
+File: czech.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+))
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout4 = `protokol_vencelj.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'protokol_vencelj.bbl' found.
+
+(./protokol_vencelj.bbl)
+Package biblatex Info: Reference section=0 on input line 69.
+Package biblatex Info: Reference segment=0 on input line 69.
+<logoVSCHT_ikona.png, id=63, 42.6393pt x 42.6393pt>
 File: logoVSCHT_ikona.png Graphic file (type png)
 <use logoVSCHT_ikona.png>
-Package pdftex.def Info: logoVSCHT_ikona.png  used on input line 79.
+Package pdftex.def Info: logoVSCHT_ikona.png  used on input line 93.
 (pdftex.def)             Requested size: 83.64944pt x 83.66154pt.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-t1.enc} <./logoVSCHT_ikona.png>]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 104
+.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 104
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.123 \end{document}
-                     [1
-pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
- been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.123 \end{document}
-                    ] (./protokol_vencelj.aux)
+l.142 	\newpage
+                [1] [2] (./protokol_vencelj.toc)
+\tf@toc=\write6
+\openout6 = `protokol_vencelj.toc'.
+
+ [3]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
+46.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+) [4]
+(./protokol_vencelj.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `protokol_vencelj.out' has not changed.
-(rerunfilecheck)             Checksum: D5B5AC65C235E3687D6DFBA15056BE67;66.
+(rerunfilecheck)             Checksum: 2EB1757D12F37A87B79EA1E948A870E3;2002.
+Package logreq Info: Writing requests to 'protokol_vencelj.run.xml'.
+\openout1 = `protokol_vencelj.run.xml'.
+
  ) 
 Here is how much of TeX's memory you used:
- 36002 strings out of 474222
- 852822 string characters out of 5748733
- 1929975 words of memory out of 5000000
- 57743 multiletter control sequences out of 15000+600000
- 566674 words of font info for 54 fonts, out of 8000000 for 9000
+ 43851 strings out of 474222
+ 1006695 string characters out of 5748733
+ 1934975 words of memory out of 5000000
+ 65476 multiletter control sequences out of 15000+600000
+ 569597 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,17n,107p,732b,925s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1
+ 99i,8n,107p,1131b,2783s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx
+2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb></usr/share
+/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1
 000.pfb>
-Output written on protokol_vencelj.pdf (2 pages, 148756 bytes).
+Output written on protokol_vencelj.pdf (5 pages, 274755 bytes).
 PDF statistics:
- 92 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 231 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -4,19 +4,27 @@
 \usepackage{multirow} % multirow
 \usepackage{geometry} % paper geometry
 \usepackage{amsmath} % math for LaTeX
+\usepackage{amssymb} % mathbb
 \usepackage{graphicx} % pictures, graphical env
+% https://pgfplots.sourceforge.net/pgfplots.pdf
 \usepackage{pgfplots} % graph
-\usepackage{physics} % derivative
-\usepackage{siunitx} % tabůes, quantities
+% https://mirrors.ibiblio.org/CTAN/macros/latex/contrib/physics/physics.pdf
+\usepackage{physics} % special math symbols
+% https://texdoc.org/serve/siunitx/0
+\usepackage{siunitx} % tables, quantities
 \usepackage{booktabs} % 
 \usepackage{hyperref} % functional links
 \usepackage{indentfirst} % indent the first row in paragraph
 \usepackage{float} % override graphical placement
 \usepackage{appendix} % appendicies
 \usepackage{bm} % bold math
-\usepackage{makecell} % split text with cell
+\usepackage{makecell} % split text within cell
 \usepackage{url} % url
+%https://mirrors.ibiblio.org/CTAN/macros/latex/contrib/biblatex-contrib/biblatex-iso690/biblatex-iso690.pdf
+\usepackage[style=iso-authoryear, backend=biber]{biblatex} % ISO 690
 
+
+\addbibresource{protocol-ref.bib}
 
 \geometry{a4paper}
 
@@ -39,12 +47,13 @@
 \setlength{\heavyrulewidth}{1.8pt} % table separator
 \setlength{\lightrulewidth}{1.2pt} % header separator
 
-
+% text header
 \newcommand{\header}[1]{% 
 	\rule{0pt}{2\baselineskip}%
 	\textbf{\makecell[c]{#1}}%
 }
 
+% math header
 \newcommand{\headermath}[2]{%
 	\rule{0pt}{2\baselineskip}%
 	\boldmath%
@@ -84,45 +93,60 @@
 			\includegraphics[width=0.2\textwidth]{logoVSCHT_ikona.png}
 			
 			
-			Praha 2025 \\
+			Praha 2026 \\
 			vedoucí práce: prof. RNDr. Jiří Kolafa, CSc.\\
 			
 		\end{center}
 	\end{titlepage}
 	
 	\section{Úvod}
-	$$\qty{5 \pm 0.1}{\raiseto{0.5}\meter}$$
-	\qtylist{5; 2; 4; 5}{\meter \second}
-	$$\qtyproduct{10 x 20 x 30}{\meter}$$
-	\qtyrange{5}{30}{\meter}
-	$$\qty{317 \pm 0.01e-7}{\m\per\s}$$
-	$$\ang{10;20;30}$$
-	$$\complexqty{1.5 + 2.3j}{\ohm}$$
-	$$\qty{60}{px \per \second}$$
-	$$\qty{60}{px \, \second^{-1}}$$
-	$$\qty{5}{\meter\textsubscript{peak}}$$
-	$$\qty{230}{\volt\of{in}}$$
-	\begin{table}[H]
-		\centering
-		\caption{Training SIunitX table}
-		\label{My first SIunitX table}
-		\sisetup{
-			table-alignment-mode = format,
-			table-auto-round = true,
-		}
-		\begin{tabular}{
-				c
-				c 
-				S[table-format = 4.1(1)] 
-				c
-			}
-			\toprule
-			{\headermath{\nu}{\per\cm}} & {\header{Intenzita}} & {\header{Vibrace}} & {\header{Skupina}} \\
-			\midrule
-			3102--3001 & m   & 1452 \pm 0.2 & Ar \\ 
-			1601         & v   & 750.1(5)       & Ar \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
+	\subsection{Isingův model}
+	Předpokládejme kubickou mřížku $\mathbb{Z}^3$ o velikosti $L \cross L \cross L$. V takové mřížce se nachází $N = L^3$ prvků, které mají spin $\sigma = \left\{-1; +1\right\}$ \parencite{Viswanathan2022}. Pro tuto mřížku můžeme definovat Hemiltonián $H(\sigma)$ (platí pro případ, kdy je nulové vnější magnetické pole)
+	\begin{equation} \label{hamil_eq}
+		H(\sigma) = - J \sum_{<ij>}\left(\sigma_i\sigma_j\right),
+	\end{equation}
+	kde $J$ je interakční energie, která nabývá hodnot $J > 0$ pro feromagnety a $J < 0$ pro antiferomagnety.
+	
+	Pro feromagnetické látky musí platit, že konfigurace spinů je taková, aby vznikl nenulový magnetický moment $M$, který lze vypočítat jako součet všech spinů v mřížce
+	\begin{equation} \label{mag_eq}
+		M(\sigma) = \sum_{i=1}^{N}\sigma_i.
+	\end{equation}
+	Obdobně lze vypočítat energii spinové konfigurace mřížky $E$ \parencite{FitzpatrickIsing}
+	\begin{align} \label{energy_eq}
+		e_i = - \frac{J}{2} \sum_{<ij>}\left(\sigma_i\sigma_j\right), \\
+		E(\sigma) = \sum_{i=1}^{N}e_i.
+	\end{align}
+	
+	Spiny v mřížce mají uspořádání dané Boltzmannovou distribucí
+	\begin{equation} \label{boltz_dist}
+		p(\boldsymbol{\sigma}|T) = \exp(\frac{E(\sigma)}{\mathbf{k_B}T}),
+	\end{equation}
+	kde $\mathbf{k_B}$ je Boltzmannova konstanta a $T$ je teplota. Do kritické teploty $T_c$ (někdy zvané i jako Curieova teplota) jsou spiny v dostatečném uspořádání, aby magnetický moment $M(\sigma)$ měl nenulovou hodnotu. V $T_c$ dochází k fázové přeměně druhého druhu a v teplotách $T>T_c$ se moment ztrácí \parencite{Hasenbusch_1998}. Pro 3D Isingův model byla inverzní kritická teplota numericky vypočtena s výsledkem $\beta_c = \qty{0.2216595 \pm 0.0000026}{\per \kelvin}$ \parencite{PhysRevB.44.5081}.
+	
+	\subsection{Monte Carlo}
+	Monte Carlo simulace (MC simulace) je blablabla
+	\subsubsection{Ukázka důkazu MC}
+	\subsubsection{Okrajové podmínky}
+	\subsubsection{Typy algoritmů}
+	
+	\section{Program}
+	\subsection{Simulace}
+	\subsection{Uživatelské rozhraní}
+	
+	\section{Výsledky}
+	\subsection{Konstantní teplota}
+	\subsection{Teplotní cykly}
+	\subsection{Antiferomagnet}
+	\subsection{Hystereze – vliv počátečních podmínek na průběh simulace}
+	
+	\newpage
+	\tableofcontents
+	
+	\newpage
+	\printbibliography[title={Reference}]
+	
+	\newpage
+	\begin{appendices}
+	\end{appendices}
 	
 \end{document}
