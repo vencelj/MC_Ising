@@ -1,18 +1,24 @@
 \babel@toc {czech}{}\relax 
-\contentsline {section}{\numberline {1}Úvod}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Isingův model}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Monte Carlo}{1}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Ukázka důkazu MC}{2}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Okrajové podmínky}{2}{subsubsection.1.2.2}%
-\contentsline {subsubsection}{\numberline {1.2.3}Typy algoritmů}{2}{subsubsection.1.2.3}%
-\contentsline {section}{\numberline {2}Program}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Simulace}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Uživatelské rozhraní}{2}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Výsledky}{2}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Konstantní teplota}{2}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Teplotní cykly}{2}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Antiferomagnet}{2}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Hystereze – vliv počátečních podmínek na průběh simulace}{2}{subsection.3.4}%
+\contentsline {section}{\numberline {1}Zadání}{2}{section.1}%
+\contentsline {section}{\numberline {2}Úvod}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Isingův model}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Monte Carlo}{2}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Typy algoritmů}{3}{subsubsection.2.2.1}%
+\contentsline {paragraph}{Metropolisův algoritmus}{3}{section*.2}%
+\contentsline {paragraph}{Heat Bath algoritmus}{3}{section*.3}%
+\contentsline {paragraph}{Jiné}{3}{section*.4}%
+\contentsline {section}{\numberline {3}Program}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Simulace}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Grafické uživatelské rozhraní}{4}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Výsledky}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Konstantní teplota}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Zahřívání}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Ochlazování}{5}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Tepelný cyklus}{6}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Antiferomagnet}{6}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Hystereze – vliv počátečních podmínek na průběh simulace}{6}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Vliv velikosti mřížky na průběh simulace}{7}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Závěr}{7}{section.5}%
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
@@ -27,3 +33,12 @@
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\babel@toc {czech}{}\relax 
+\contentsline {section}{\numberline {A}Pseudokód MC}{9}{appendix.1.A}%

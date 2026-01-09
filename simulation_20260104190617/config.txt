@@ -1,6 +1,0 @@
-run_time:4096
-J:1.0
-T_min:1.0
-T_max:6.0
-L:50
-init:0

@@ -15,20 +15,28 @@
 \usepackage{booktabs} % 
 \usepackage{hyperref} % functional links
 \usepackage{indentfirst} % indent the first row in paragraph
+\usepackage{subcaption} % subfigure
 \usepackage{float} % override graphical placement
 \usepackage{appendix} % appendicies
 \usepackage{bm} % bold math
 \usepackage{makecell} % split text within cell
-\usepackage{url} % url
+\usepackage{xurl} % url
 %https://mirrors.ibiblio.org/CTAN/macros/latex/contrib/biblatex-contrib/biblatex-iso690/biblatex-iso690.pdf
-\usepackage[style=iso-authoryear, backend=biber]{biblatex} % ISO 690
+\usepackage[style=iso-numeric, backend=biber, sorting=none]{biblatex}
+ % ISO 690
+% https://github.com/gpoore/minted/blob/main/latex/minted/minted.pdf
+\usepackage{minted}
+\usepackage{csquotes} % czech quotes
 
+\raggedbottom % avoid empty page at the end
+\widowpenalty=10000 % penalize widow
+\clubpenalty=10000 % penalize orphan
 
 \addbibresource{protocol-ref.bib}
 
 \geometry{a4paper}
 
-% setup SIunitX env
+% globally setup SIunitX env
 \sisetup{
 	output-decimal-marker = {,},
 	retain-explicit-plus = true,
@@ -57,7 +65,7 @@
 \newcommand{\headermath}[2]{%
 	\rule{0pt}{2\baselineskip}%
 	\boldmath%
-	$\displaystyle \frac{#1}{\unit[unit-font-command = \mathbf]{#2}}$%
+	$\displaystyle \frac{#1}{\qty[unit-font-command = \mathbf]{#2}}$%
 }
 
 % renew SiunitX v. 3.X.X
@@ -99,9 +107,15 @@
 		\end{center}
 	\end{titlepage}
 	
+	\tableofcontents
+	\newpage
+	
+	\section{Zadání}
+	Dostupné z \url{https://github.com/mhkoscience/pchem/blob/main/projekty/P02-ISING/README.yaml}.
+	
 	\section{Úvod}
 	\subsection{Isingův model}
-	Předpokládejme kubickou mřížku $\mathbb{Z}^3$ o velikosti $L \cross L \cross L$. V takové mřížce se nachází $N = L^3$ prvků, které mají spin $\sigma = \left\{-1; +1\right\}$ \parencite{Viswanathan2022}. Pro tuto mřížku můžeme definovat Hemiltonián $H(\sigma)$ (platí pro případ, kdy je nulové vnější magnetické pole)
+	Předpokládejme kubickou mřížku $\mathbb{Z}^3$ o velikosti $L \times L \times L$. V takové mřížce se nachází $N = L^3$ prvků, které mají spin $\sigma = \left\{-1; +1\right\}$ \cite{Viswanathan2022}. Pro tuto mřížku můžeme definovat Hamiltonián $H(\sigma)$ (platí pro případ, kdy je nulové vnější magnetické pole)
 	\begin{equation} \label{hamil_eq}
 		H(\sigma) = - J \sum_{<ij>}\left(\sigma_i\sigma_j\right),
 	\end{equation}
@@ -111,42 +125,330 @@
 	\begin{equation} \label{mag_eq}
 		M(\sigma) = \sum_{i=1}^{N}\sigma_i.
 	\end{equation}
-	Obdobně lze vypočítat energii spinové konfigurace mřížky $E$ \parencite{FitzpatrickIsing}
+	Obdobně lze vypočítat energii spinové konfigurace mřížky $E$ \cite{FitzpatrickIsing}
 	\begin{align} \label{energy_eq}
 		e_i = - \frac{J}{2} \sum_{<ij>}\left(\sigma_i\sigma_j\right), \\
 		E(\sigma) = \sum_{i=1}^{N}e_i.
 	\end{align}
 	
-	Spiny v mřížce mají uspořádání dané Boltzmannovou distribucí \parencite{CambridgeCATAM11pt2}
+	Spiny v mřížce mají uspořádání podle Boltzmannova rozdělení dané partiční funkcí 
 	\begin{equation} \label{boltz_dist}
-		p(\boldsymbol{\sigma}|T) = \exp(\frac{E(\sigma)}{\mathbf{k_B}T}),
+		p(\boldsymbol{\sigma}|T) = \exp(-\frac{E(\sigma)}{\mathrm{\mathbf{k_B}}T}),
 	\end{equation}
-	kde $\mathbf{k_B}$ je Boltzmannova konstanta a $T$ je teplota. Do kritické teploty $T_c$ (někdy zvané i jako Curieova teplota) jsou spiny v dostatečném uspořádání, aby magnetický moment $M(\sigma)$ měl nenulovou hodnotu. V $T_c$ dochází k fázové přeměně druhého druhu a v teplotách $T>T_c$ se moment ztrácí \parencite{Hasenbusch_1998}. Pro 3D Isingův model byla inverzní kritická teplota numericky vypočtena s výsledkem $\beta_c = \qty{0.2216595 \pm 0.0000026}{\per \kelvin}$ \parencite{PhysRevB.44.5081}.
+	kde $\mathrm{\mathbf{k_B}}$ je Boltzmannova konstanta a $T$ je teplota \cite{CambridgeCATAM11pt2}. Do kritické teploty $T_\mathrm{c}$ (někdy zvané i jako Curieova teplota) jsou spiny v dostatečném uspořádání, aby magnetický moment $M(\sigma)$ měl nenulovou hodnotu. Při teplotě $T_\mathrm{c}$ dochází k fázové přeměně druhého druhu a v teplotách $T>T_\mathrm{c}$ se moment ztrácí \cite{Hasenbusch_1998}. Pro 3D Isingův model byla inverzní kritická teplota numericky vypočtena s výsledkem $\beta_\mathrm{c} = 0.2216595 \pm 0.0000026$ \cite{PhysRevB.44.5081}.
 	
 	\subsection{Monte Carlo}
-	Jelikož neexistuje analytické řešení Isingova modelu pro 3D mřížku, přichází na pomoc numerická simulace Monte Carlo (MC simulace).
-	\subsubsection{Ukázka důkazu MC}
-	\subsubsection{Okrajové podmínky}
+	Jelikož neexistuje přijímané analytické řešení Isingova modelu pro 3D mřížku, používá se~k simulaci numerická metoda Monte Carlo (MC simulace).
+	
 	\subsubsection{Typy algoritmů}
+	\paragraph{Metropolisův algoritmus} je založen na generování náhodného čísla představující pravděpodobnost $p(\sigma_i|T)$ (přepsáno pro stavy $a$ a $b$ $p_{a \rightarrow b}$). Pokud platí $\Delta E(\sigma_i) < 0$, proveď změnu stavu $a \rightarrow b$ s pravděpodobností $p_{a \rightarrow b} = 1$. V opačném případě proveď změnu stavu, pokud vygenerovaná pravděpodobnost je menší partiční funkci $p_{a \rightarrow b} < \exp(-E(\sigma)/\mathrm{\mathbf{k_B}}T)$ \cite{FitzpatrickIsing}.
+	
+	\paragraph{Heat Bath algoritmus} na rozdíl od Metropolisova algoritmu, který sestává ze tří částí (navrhnutí změny, vyhodnocení přijetí, změna stavu $a \rightarrow b$), rovnou přepisuje stav na základě Boltzmannova rozdělení podle pravděpodobností \cite{Lipowski2023}
+	\begin{align}
+		\Delta E(\sigma) = 2J \sum_{<ij>}\left(\sigma_i\sigma_j\right),\\
+		P(\sigma = +1) = \frac{1}{1+\exp(-\frac{\Delta E(\sigma)}{\mathrm{\mathbf{k_B}}T})}, \\
+		P(\sigma = -1) = \frac{1}{1+\exp(\frac{\Delta E(\sigma)}{\mathrm{\mathbf{k_B}}T})}.
+	\end{align}
+	
+	\paragraph{Jiné} algoritmy, kterých je celá řada, například mění celé klastry spinů.
 	
 	\section{Program}
+	Ačkoliv samotný MC algoritmus je jednoduchý, 3D prostor s sebou přináší vysoký počet iterací, které je potřeba napočítat: $i = 2 \cdot L^3 \cdot t \cdot eq$. Při použitých parametrech $L = 50$, počet iterací $t = 4096$, ekvilibrační kroky $eq = 10$ se dostáváme k cca deseti miliardám iteracím. Z~tohoto důvodu jsem se rozhodl rozdělit program na dvě části.
+	
+	Simulaci samotnou jsem proto implementoval do programovacího jazyka C a konfiguraci, export a vizualizaci výpočtu do Pythonu. Python při spuštění vytvoří několik binárních souborů, které přímo čte simulační program spuštěný jako subproces (eliminuje se nutnost konverze):
+	\begin{enumerate}
+		\item atoms.bin (8 bit integer) – 1D pole o délce $L^3$;
+		\item config.bin (struct) – $L$, $t$, $J$, inicializační metoda;
+		\item temp\_cycle.bin (32 bit float) – teplotní cyklus.
+	\end{enumerate}
+	
+	\begin{minted}[mathescape,
+				   numbersep=5pt,
+				   gobble=2,
+				   frame=lines,
+				   framesep=2mm,
+				   bgcolor=lightgray]{bash}
+		# Linux
+		$ ./bin/simulant path_to_simulation
+		# Windows
+		$ ./bin/simulant.exe path_to_simulation
+	\end{minted}
+	
 	\subsection{Simulace}
-	\subsection{Uživatelské rozhraní}
+	Byl napsán simulační program v programovacím jazyce C, do kterého byl implementován Heat Bath algoritmus. Metoda počítá s redukovanými veličinami: interakční energie $J = 1$, Boltzmannova konstanta $\mathrm{\mathbf{k_B}} = 1$, redukovaná teplota $t = T/T_\mathrm{c}$.
+	
+	Aby bylo zaručeno, že se energie a magnetizace začnou počítat pro mřížku, jejíž konfigurace odpovídá Boltzmannovu rozdělení, byl přidán kromě možnosti náhodného rozdělení spinů i scénář WARM-UP. Na začátku jsou všechny spiny rovny $-1$. Pro tuto mřížku se provede počet iterací $t$, které odpovídají počtu iterací kýžené simulace. Teplotní cyklus WARM-UP začíná v nadkritické oblasti a pomalu se ochlazuje k teplotě, kterou začíná temp\_cycle.bin \cite{CambridgeCATAM11pt2}.
+	
+	Pro prevenci hystereze se v každé iteraci MC výpočet opakuje po definovaný počet ekvilibrčních kroků $eq = 10$ při stejné teplotě. Systém má tak čas přizpůsobit se nové teplotě.
+	
+	\subsection{Grafické uživatelské rozhraní}
+	Grafické uživatelské rozhraní (GUI) bylo naprogramováno v Pythonu s využitím modulů NumPy (generování mřížky, teplotních cyklů a export do binárních souborů), customtkinter (grafické rozhraní) a matplotlib (vizualizace sledovaných vlastností a export animace).
+	
+	Uživatel má možnost měnit typ a intenzitu teplotního cyklu: 
+	\begin{enumerate}
+		\item konstantní teplota;
+		\item ohřev;
+		\item ochlazování;
+		\item pomalý ohřev a pomalé ochlazování;
+		\item rychlý ohřev a pomalé ochlazování;
+		\item pomalý ohřev a rychlé ochlazování;
+	\end{enumerate}
+	dále hodnotu interakční energie, velikost mřížky a může si zvolit výše vysvětlenou WARM-UP metodu, nebo nechat NumPy vygenerovat náhodnou mřížku.
+	
+	Grafické prvky použité v aplikaci byly buď převzaty z volně licencovaných příspěvků na IconScout\footnote{\url{https://iconscout.com/}}, nebo dotvořeny v programu GIMP. Jako pozadí hlavního okna aplikace jsem zvolil Obrázek 3: Schematická reprezentace konfigurace 2D Isingova modelu na čtvercové mřížce\footnote{Obrázek dostupný z \url{https://www.researchgate.net/figure/Schematic-representation-of-a-configuration-of-the-2D-Ising-model-on-a-square-lattice_fig2_321920877}}. 
 	
 	\section{Výsledky}
-	\subsection{Konstantní teplota}
-	\subsection{Teplotní cykly}
-	\subsection{Antiferomagnet}
-	\subsection{Hystereze – vliv počátečních podmínek na průběh simulace}
+	\begin{table}[H]
+		\centering
+		\caption{Parametry simulací}
+		\label{sim_config}
+		\begin{tabular}{
+				c
+				c 
+			}
+			\toprule
+			{\header{Parametr}} & {\header{Hodnota}} \\
+			\midrule
+			$L$ & 50 \\ 
+			$eq$ & 10 \\
+			$J$ & 1 \\ 
+			$t$ & 4096 \\
+			$T_\mathrm{min}$ & 1.0 \\
+			$T_\mathrm{max}$ & 6.0 \\
+			inicializace & WARM-UP \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	Není-li řečeno jinak, simulace jsem nastavoval podle tabulky \ref{sim_config}.
 	
-	\newpage
-	\tableofcontents
+	\subsection{Konstantní teplota}
+	Při udržování konstantní teploty lze sledovat, že hodnota magnetizace i energie se v průběhu času v průměru nemění. Čím více se ale teplota blíží ke kritické teplotě, tím se zvyšuje energie a klesá uspořádanost mřížky.
+	
+	\subsection{Zahřívání}
+	Energie postupně stoupá, po kritické teplotě dochází ke zlomu. Magnetizace po překročení kritické teploty osciluje kolem nuly. 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{heating_magnetization.png}
+			\caption{Vývoj magnetického momentu v závislosti na teplotě}
+			\label{heating_magnetization}
+		\end{subfigure}%
+		~ 
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{heating_energy.png}
+			\caption{Vývoj energie v závislosti na teplotě}
+			\label{heating_energy}
+		\end{subfigure}
+	\end{figure}
+	
+	\subsection{Ochlazování}
+	Během ochlazování postupně přechází neuspořádaný systém zpět do uspořádaného. Energie klesá a magnetický moment celé mřížky se náhodně ustálí v kladném, nebo záporném směru.
+	 
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{cooling_magnetization.png}
+			\caption{Vývoj magnetického momentu v závislosti na teplotě}
+			\label{cooling_magnetization}
+		\end{subfigure}%
+		~ 
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{cooling_energy.png}
+			\caption{Vývoj energie v závislosti na teplotě}
+			\label{cooling_energy}
+		\end{subfigure}
+	\end{figure}
+	
+	\subsection{Tepelný cyklus}
+	Tepelný cyklus byl nastaven na náhodnou počáteční konfiguraci.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{cycle_magnetization.png}
+			\caption{Vývoj magnetického momentu v závislosti na teplotě}
+			\label{cycle_magnetization}
+		\end{subfigure}%
+		~ 
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{cycle_energy.png}
+			\caption{Vývoj energie v závislosti na teplotě}
+			\label{cycle_energy}
+		\end{subfigure}
+	\end{figure}
+	
+	\subsection{Antiferomagnet}
+	Pro simulaci antiferomagnetu jsem nastavil $J = -1$. Magnetizace po celou dobu simulace nevykazuje jednoznačný magnetický moment. V animaci je vidět, že žádné 2 spiny vedle sebe v~ustáleném stavu nesměřují stejným směrem. 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{anti_magnetization.png}
+			\caption{Vývoj magnetického momentu v závislosti na teplotě}
+			\label{anti_magnetization}
+		\end{subfigure}%
+		~ 
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{anti_energy.png}
+			\caption{Vývoj energie v závislosti na teplotě}
+			\label{anti_energy}
+		\end{subfigure}
+	\end{figure}
+	
+	\subsection{Hystereze – vliv počátečních podmínek na průběh simulace}
+	Tepelný cyklus je závislý na počátečních podmínkách. Na začátku tohoto cyklu se v mřížce vyskytovalo několik metastabilních oblastí. Ty byly příčinou vzniku hysterezní křivky. Pro eliminaci tohoto jevu u dalších simulací jsem přidal pro každý iterační krok několik ekvilibračních mezikroků při stejné teplotě, aby se systém stihl nové teplotě přizpůsobit.\footnote{Hysterezi by pak také měl eliminovat WARM-UP, avšak s největší pravděpodobností z důvodu chyby paměťové segmentace při přechodu mezi WARM-UP a měřením dochází na začátku simulace k chybné konfiguraci.}
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=1.1\textwidth]{hyst_magnetization.png}
+			\label{hyst_magnetization}
+			\caption{Vývoj magnetického momentu v závislosti na teplotě}
+		\end{subfigure}%
+		~ 
+		\begin{subfigure}[t]{0.5\textwidth}
+			\centering
+			\includegraphics[width=1.1\textwidth]{hyst_energy.png}
+			\label{hyst_energy}
+			\caption{Vývoj energie v závislosti na teplotě}
+		\end{subfigure}
+	\end{figure}
+	
+	\subsection{Vliv velikosti mřížky na průběh simulace}
+	Provedl jsem 5 simulací s velikostmi mřížky 10, 20, 30, 40 a 50. Velikost mřížky má vliv na přesnost odečítání kritické teploty.
+	
+	\section{Závěr}
+	Napsal jsem program pro MC simulaci Isingova feromagnetu na kubické mřížce v periodických okrajových podmínkách s nulovým vnějším magnetickým polem. Na této mřížce jsem monitoroval energii a celkovou magnetizaci. Simulaci jsem provedl pro různé termální cykly a různé velikosti mřížky.
+	
+	Z poměru $T/T_\mathrm{c}$ jsem stanovil, že k fázovému přechodu došlo v $T/T_\mathrm{c} \approx 1$, čili simulace správně odhadla $T_\mathrm{c} \approx 4.5$.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.15\textwidth]{repo_qr.png}
+		\label{repo_qr}
+		\caption{Odkaz na GitHub úložiště (\url{https://github.com/vencelj/MC\_Ising})}
+	\end{figure}
+	
+	Odkaz na zdrojové kódy a složkami s kompletními simulovanými daty i animacemi naleznete na odkazu výše.
 	
 	\newpage
 	\printbibliography[title={Reference}]
 	
 	\newpage
 	\begin{appendices}
+		\section{Pseudokód MC}
+		\begin{minted}[mathescape,
+			breaklines,
+			linenos,
+			numbersep=5pt,
+			gobble=2,
+			frame=lines,
+			framesep=2mm,
+			bgcolor=lightgray]{c}
+		#include "monte_carlo.h"
+		
+		float totalEnergy(struct SimConfig *sim, struct SimMeas *meas){
+			energyTotal = 0; 
+			L = sim->L;
+			J = sim->J;
+			
+			float energyLUT[7]; // look-up table for energy
+			for (int s = -6; s <= 6; s += 2) {
+				energyLUT[(s + 6) / 2] = -J/2.0f * (float)s;
+			}
+			
+			for (all atoms in lattice){
+				// periodic boundary conditions
+				spin = meas->atoms[a*L*L + b*L + c];
+				spinNeighbours = meas->atoms[(a-1)*L*L + j*L + k]
+				+ meas->atoms[(a+1)*L*L + j*L + k]
+				+ ...;
+				
+				spinConfiguration = spin * spinNeighbours;
+				energyTotal += energyLUT[(spinConfiguration + 6) / 2];
+			}
+			return energyTotal;
+		}
+		
+		void monteCarlo(struct SimConfig *sim, struct SimMeas *meas, iterCounter){
+			L = sim->L;
+			J = sim->J;
+			N = (uint64_t)L*L*L;
+			temp = meas->temps[iterCounter];
+			energyIter;
+			magnetizationIter;
+			
+			/*
+			* if this is the first iteration ->
+			* -> energyIter = totalEnergy()
+			* if this is the first iteration after WARM-UP ->
+			* -> energyIter = meas->energy[last]
+			* else ->
+			* -> energyIter = meas->energy[iterCounter - 1]
+			* analogy for magnetizationIter
+			*/  
+			
+			float energyLUT[7]; // look-up table for energy
+			float probLUT[7]; // look-up table for probability
+			for (int s = -6; s <= 6; s += 2) {
+				float dE = 2.0f * J * (float)s;
+				probLUT[(s + 6) / 2]=1/(1+exp(-dE/(bolzmannConst*temp)));
+			}
+			
+			for (eq = 0; eq<10; eq++){ // equilibrium steps
+				for (i=0; i<N;i++){
+					a, b, c = rand() % L;
+					
+					// periodic boundary conditions
+					spin = meas->atoms[a*L*L + b*L + c];
+					spinNeighbours = meas->atoms[(a-1)*L*L + j*L + k]
+					+ meas->atoms[(a+1)*L*L + j*L + k]
+					+ ...;
+					
+					if (PROB() < probLUT[(spinNeighbours + 6) / 2]) {
+						meas->atoms[a*L*L + b*L + c] = 1;
+					} else {
+						meas->atoms[a*L*L + b*L + c] = -1;
+					}
+					
+					dE = -J * spinNeighbours * (newSpin - spin);
+					energyIter += dE; 
+					magnetizationIter += (newSpin - spin);
+				}
+			}
+			// save energyIter and magnetizationIter into struct meas
+		}
+		
+		int main(int argc, char **argv){	
+			// load path to dir if argc == 2, else return 1;
+			const char *dirPath = argv[1];
+			// configure simulation -> load all binaries
+			
+			// call all monteCarlo() for i < iterations
+			if (sim.init == WARM_UP){
+				monteCarlo(&sim, &meas, i); // run MC at WARM-UP temp. cycle
+				monteCarlo(&sim, &meas, i); // run simulation
+			}
+			else{
+				monteCarlo(&sim, &meas, i); // run simulation
+				// after every 10 iterations save state of atoms in atoms.bin
+			}
+			
+			// create *.bin with calculated magnetization and energy
+			// free allocated memory
+			return 0; // end program
+		}
+		\end{minted}
 	\end{appendices}
+	\let\clearpage\relax
 	
 \end{document}

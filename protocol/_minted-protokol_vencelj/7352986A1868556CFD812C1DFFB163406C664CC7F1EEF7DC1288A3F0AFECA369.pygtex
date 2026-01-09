@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c+c1}{\PYGZsh{} Linux}
+\PYGZdl{}\PYG{+w}{ }./bin/simulant\PYG{+w}{ }path\PYGZus{}to\PYGZus{}simulation
+\PYG{c+c1}{\PYGZsh{} Windows}
+\PYGZdl{}\PYG{+w}{ }./bin/simulant.exe\PYG{+w}{ }path\PYGZus{}to\PYGZus{}simulation
+\end{Verbatim}

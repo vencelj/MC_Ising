@@ -1,0 +1,95 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}monte\PYGZus{}carlo.h\PYGZdq{}}
+
+\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n+nf}{totalEnergy}\PYG{p}{(}\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{SimConfig}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{sim}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{SimMeas}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{meas}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{energyTotal}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{L}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{J}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{J}\PYG{p}{;}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{energyLUT}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}\PYG{+w}{ }\PYG{c+c1}{// look\PYGZhy{}up table for energy}
+\PYG{+w}{	}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{energyLUT}\PYG{p}{[(}\PYG{n}{s}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{J}\PYG{o}{/}\PYG{l+m+mf}{2.0f}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{float}\PYG{p}{)}\PYG{n}{s}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{all}\PYG{+w}{ }\PYG{n}{atoms}\PYG{+w}{ }\PYG{n}{in}\PYG{+w}{ }\PYG{n}{lattice}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{		}\PYG{c+c1}{// periodic boundary conditions}
+\PYG{+w}{		}\PYG{n}{spin}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[}\PYG{n}{a}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{];}
+\PYG{+w}{		}\PYG{n}{spinNeighbours}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[(}\PYG{n}{a}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{k}\PYG{p}{]}
+\PYG{+w}{		}\PYG{o}{+}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[(}\PYG{n}{a}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{k}\PYG{p}{]}
+\PYG{+w}{		}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{...;}
+\PYG{+w}{		}
+\PYG{+w}{		}\PYG{n}{spinConfiguration}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{spin}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{spinNeighbours}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{energyTotal}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{energyLUT}\PYG{p}{[(}\PYG{n}{spinConfiguration}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{];}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{n}{energyTotal}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{monteCarlo}\PYG{p}{(}\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{SimConfig}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{sim}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{struct}\PYG{+w}{ }\PYG{n+nc}{SimMeas}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{meas}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{iterCounter}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{L}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{J}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{sim}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{J}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{N}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{uint64\PYGZus{}t}\PYG{p}{)}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{temp}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{temps}\PYG{p}{[}\PYG{n}{iterCounter}\PYG{p}{];}
+\PYG{+w}{	}\PYG{n}{energyIter}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{magnetizationIter}\PYG{p}{;}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+cm}{/*}
+\PYG{c+cm}{	* if this is the first iteration \PYGZhy{}\PYGZgt{}}
+\PYG{c+cm}{	* \PYGZhy{}\PYGZgt{} energyIter = totalEnergy()}
+\PYG{c+cm}{	* if this is the first iteration after WARM\PYGZhy{}UP \PYGZhy{}\PYGZgt{}}
+\PYG{c+cm}{	* \PYGZhy{}\PYGZgt{} energyIter = meas\PYGZhy{}\PYGZgt{}energy[last]}
+\PYG{c+cm}{	* else \PYGZhy{}\PYGZgt{}}
+\PYG{c+cm}{	* \PYGZhy{}\PYGZgt{} energyIter = meas\PYGZhy{}\PYGZgt{}energy[iterCounter \PYGZhy{} 1]}
+\PYG{c+cm}{	* analogy for magnetizationIter}
+\PYG{c+cm}{	*/}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{energyLUT}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}\PYG{+w}{ }\PYG{c+c1}{// look\PYGZhy{}up table for energy}
+\PYG{+w}{	}\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{probLUT}\PYG{p}{[}\PYG{l+m+mi}{7}\PYG{p}{];}\PYG{+w}{ }\PYG{c+c1}{// look\PYGZhy{}up table for probability}
+\PYG{+w}{	}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}6}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{s}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{k+kt}{float}\PYG{+w}{ }\PYG{n}{dE}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.0f}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{J}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{float}\PYG{p}{)}\PYG{n}{s}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{probLUT}\PYG{p}{[(}\PYG{n}{s}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{dE}\PYG{o}{/}\PYG{p}{(}\PYG{n}{bolzmannConst}\PYG{o}{*}\PYG{n}{temp}\PYG{p}{)));}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{eq}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{eq}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{eq}\PYG{o}{++}\PYG{p}{)\PYGZob{}}\PYG{+w}{ }\PYG{c+c1}{// equilibrium steps}
+\PYG{+w}{		}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{N}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{			}\PYG{n}{a}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{c}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{rand}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{n}{L}\PYG{p}{;}
+\PYG{+w}{			}
+\PYG{+w}{			}\PYG{c+c1}{// periodic boundary conditions}
+\PYG{+w}{			}\PYG{n}{spin}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[}\PYG{n}{a}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{];}
+\PYG{+w}{			}\PYG{n}{spinNeighbours}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[(}\PYG{n}{a}\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{k}\PYG{p}{]}
+\PYG{+w}{			}\PYG{o}{+}\PYG{+w}{ }\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[(}\PYG{n}{a}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{j}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{k}\PYG{p}{]}
+\PYG{+w}{			}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{...;}
+\PYG{+w}{			}
+\PYG{+w}{			}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{PROB}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{probLUT}\PYG{p}{[(}\PYG{n}{spinNeighbours}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{])}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{				}\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[}\PYG{n}{a}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{			}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{				}\PYG{n}{meas}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{atoms}\PYG{p}{[}\PYG{n}{a}\PYG{o}{*}\PYG{n}{L}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{b}\PYG{o}{*}\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{c}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{\PYGZhy{}1}\PYG{p}{;}
+\PYG{+w}{			}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{			}
+\PYG{+w}{			}\PYG{n}{dE}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n}{J}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{spinNeighbours}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{newSpin}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{spin}\PYG{p}{);}
+\PYG{+w}{			}\PYG{n}{energyIter}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{n}{dE}\PYG{p}{;}
+\PYG{+w}{			}\PYG{n}{magnetizationIter}\PYG{+w}{ }\PYG{o}{+=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{newSpin}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{spin}\PYG{p}{);}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{c+c1}{// save energyIter and magnetizationIter into struct meas}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{**}\PYG{n}{argv}\PYG{p}{)\PYGZob{}}\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{// load path to dir if argc == 2, else return 1;}
+\PYG{+w}{	}\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{*}\PYG{n}{dirPath}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{+w}{	}\PYG{c+c1}{// configure simulation \PYGZhy{}\PYGZgt{} load all binaries}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{// call all monteCarlo() for i \PYGZlt{} iterations}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{sim}\PYG{p}{.}\PYG{n}{init}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{WARM\PYGZus{}UP}\PYG{p}{)\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{monteCarlo}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{sim}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{meas}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// run MC at WARM\PYGZhy{}UP temp. cycle}
+\PYG{+w}{		}\PYG{n}{monteCarlo}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{sim}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{meas}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// run simulation}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{k}{else}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{monteCarlo}\PYG{p}{(}\PYG{o}{\PYGZam{}}\PYG{n}{sim}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{n}{meas}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// run simulation}
+\PYG{+w}{		}\PYG{c+c1}{// after every 10 iterations save state of atoms in atoms.bin}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{// create *.bin with calculated magnetization and energy}
+\PYG{+w}{	}\PYG{c+c1}{// free allocated memory}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// end program}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
