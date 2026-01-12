@@ -141,7 +141,7 @@
 	Jelikož neexistuje přijímané analytické řešení Isingova modelu pro 3D mřížku, používá se~k simulaci numerická metoda Monte Carlo (MC simulace).
 	
 	\subsubsection{Typy algoritmů}
-	\paragraph{Metropolisův algoritmus} je založen na generování náhodného čísla představující pravděpodobnost $p(\sigma_i|T)$ (přepsáno pro stavy $a$ a $b$ $p_{a \rightarrow b}$). Pokud platí $\Delta E(\sigma_i) < 0$, proveď změnu stavu $a \rightarrow b$ s pravděpodobností $p_{a \rightarrow b} = 1$. V opačném případě proveď změnu stavu, pokud vygenerovaná pravděpodobnost je menší partiční funkci $p_{a \rightarrow b} < \exp(-E(\sigma)/\mathrm{\mathbf{k_B}}T)$ \cite{FitzpatrickIsing}.
+	\paragraph{Metropolisův algoritmus} je založen na generování náhodného čísla představující pravděpodobnost $p(\sigma_i|T)$ (přepsáno pro stavy $a$ a $b$ $p_{a \rightarrow b}$). Pokud platí $\Delta E(\sigma_i) < 0$, proveď změnu stavu $a \rightarrow b$ s pravděpodobností $p_{a \rightarrow b} = 1$. V opačném případě proveď změnu stavu, pokud je vygenerovaná pravděpodobnost menší než partiční funkce $p_{a \rightarrow b} < \exp(-E(\sigma)/\mathrm{\mathbf{k_B}}T)$ \cite{FitzpatrickIsing}.
 	
 	\paragraph{Heat Bath algoritmus} na rozdíl od Metropolisova algoritmu, který sestává ze tří částí (navrhnutí změny, vyhodnocení přijetí, změna stavu $a \rightarrow b$), rovnou přepisuje stav na základě Boltzmannova rozdělení podle pravděpodobností \cite{Lipowski2023}
 	\begin{align}
@@ -171,7 +171,7 @@
 		# Linux
 		$ ./bin/simulant path_to_simulation
 		# Windows
-		$ ./bin/simulant.exe path_to_simulation
+		  .\bin\simulant.exe path_to_simulation
 	\end{minted}
 	
 	\subsection{Simulace}
@@ -222,7 +222,7 @@
 	Není-li řečeno jinak, simulace jsem nastavoval podle tabulky \ref{sim_config}.
 	
 	\subsection{Konstantní teplota}
-	Při udržování konstantní teploty lze sledovat, že hodnota magnetizace i energie se v průběhu času v průměru nemění. Čím více se ale teplota blíží ke kritické teplotě, tím se zvyšuje energie a klesá uspořádanost mřížky.
+	Při udržování konstantní teploty lze sledovat, že hodnota magnetizace i energie se v průběhu času v průměru nemění. Čím více se teplota blíží ke kritické teplotě, tím více se zvyšuje energie a klesá uspořádanost mřížky.
 	
 	\subsection{Zahřívání}
 	Energie postupně stoupá, po kritické teplotě dochází ke zlomu. Magnetizace po překročení kritické teploty osciluje kolem nuly. 

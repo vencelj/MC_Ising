@@ -2,5 +2,5 @@
 \PYG{c+c1}{\PYGZsh{} Linux}
 \PYGZdl{}\PYG{+w}{ }./bin/simulant\PYG{+w}{ }path\PYGZus{}to\PYGZus{}simulation
 \PYG{c+c1}{\PYGZsh{} Windows}
-\PYGZdl{}\PYG{+w}{ }./bin/simulant.exe\PYG{+w}{ }path\PYGZus{}to\PYGZus{}simulation
+\PYG{+w}{  }.\PYG{l+s+se}{\PYGZbs{}b}in\PYG{l+s+se}{\PYGZbs{}s}imulant.exe\PYG{+w}{ }path\PYGZus{}to\PYGZus{}simulation
 \end{Verbatim}
