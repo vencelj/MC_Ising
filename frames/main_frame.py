@@ -87,7 +87,7 @@ class MainFrame(ctk.CTkFrame, TkinterDnD.DnDWrapper):
 
         # simulation setting
         self.exchange_energy_label = ctk.CTkLabel(self,
-                                                  text="Exchange energy J (eV):",
+                                                  text="Exchange energy J:",
                                                   bg_color="#f0f0f0")
         self.canvas.create_window(20,
                                   120,

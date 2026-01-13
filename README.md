@@ -9,9 +9,10 @@
   - [Ovládání programu](#ovládání-programu)
 
 ## Úvod
-Použité algoritmy pro simulace naleznete v <a href="https://github.com/vencelj/MC_Ising/blob/main/protocol/protokol_vencelj.pdf">protokolu</a>.
+Apliakce vznikla na základě zadání semestrální práce na Vysoké škole chemicko-technologické v Praze. Bližší informace v <a href="https://github.com/vencelj/MC_Ising/blob/main/protocol/protokol_vencelj.pdf">protokolu</a>.
 
 ## Instalace
+Aplikace byla vyvinuta pro Linux a Windows.
 1. **Klonování úložiště**
     ```bash
     git clone [https://github.com/vencelj/MC_Ising.git](https://github.com/vencelj/MC_Ising.git)
@@ -22,8 +23,9 @@ Použité algoritmy pro simulace naleznete v <a href="https://github.com/vencelj
 3. **Spuštění programu**
     ```bash
     python main.py
-
 ## Ovládání programu
+![main_frame](./assets/main_frame_dark.png)
+<br>
 1. Nastavení<br>
 V hlavním menu nastavte parametry simulace (redukované jednotky):
    1. $J$ – interakční energie 
@@ -32,12 +34,9 @@ V hlavním menu nastavte parametry simulace (redukované jednotky):
    4. teplotní režim  
    5. inicializační metodu 
    6. $t$ – počet iterací
-<br>
-![main_frame](./assets/main_frame.png)
-<br>
-2. Simulace<br>
-Simulaci lze spustit CTRL+r
-3. Výsledky<br>
-Po doběhnutí simulace se automaticky načte okno s výsledky: grafy magnetizace $M$, energie $E$ a teplotní průběh. Zároveň se grafy automaticky uloží do složky pojmenované _simulation_rrrrmmddhhmmss_. Spolu s grafy se exportuje i video _*.mp4_ s animací mřížky. 
-4. Načtění předchozích výsledků<br>
-Pomocí Drag&Drop, CTRL+o, nebo Menu->Open New lze otevřít složku _simulation_rrrrmmddhhmmss_ obsahující již jednou vygenerované výsledky.
+1. Simulace<br>
+Simulaci lze spustit CTRL+r.<br>
+1. Výsledky<br>
+Po doběhnutí simulace se automaticky načte okno s výsledky: grafy magnetizace $M$, energie $E$ a teplotní průběh. Zároveň se grafy automaticky uloží do složky pojmenované _simulation_rrrrmmddhhmmss_. Spolu s grafy se exportuje i video _*.mp4_ s animací mřížky.<br>
+1. Načtění předchozích výsledků<br>
+Pomocí Drag&Drop, CTRL+o, nebo Menu->Open New lze otevřít složku _simulation_rrrrmmddhhmmss_ obsahující již jednou vygenerované výsledky.<br>
