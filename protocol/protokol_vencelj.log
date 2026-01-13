@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.14)  12 JAN 2026 14:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.4.14)  12 JAN 2026 19:05
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -727,6 +727,7 @@ File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
+Package hyperref Info: Option `colorlinks' set `true' on input line 4062.
 Package hyperref Info: Hyper figures OFF on input line 4179.
 Package hyperref Info: Link nesting OFF on input line 4184.
 Package hyperref Info: Hyper index ON on input line 4187.
@@ -757,7 +758,7 @@ Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
 Package hyperref Info: backreferencing OFF on input line 6078.
-Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring ON on input line 6081.
 Package hyperref Info: Link coloring with OCG OFF on input line 6088.
 Package hyperref Info: PDF/A mode OFF on input line 6093.
 
@@ -1364,7 +1365,7 @@ your preamble.
 
 Package translations Info: no dictionary file `translations-basic-dictionary-cz
 ech.trsl' found. on input line 77.
-Package hyperref Info: Link coloring OFF on input line 77.
+Package hyperref Info: Link coloring ON on input line 77.
 (./protokol_vencelj.out) (./protokol_vencelj.out)
 \@outlinefile=\write7
 \openout7 = `protokol_vencelj.out'.
@@ -1439,12 +1440,6 @@ File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 \openout5 = `protokol_vencelj.pyg'.
 
  (./_minted-protokol_vencelj/default.pygstyle)
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -P mathescape='True' -F gobble:n='2' -o _minted-protokol_vencelj
-/5F9B5FE320C1DA28B716721558AED1636C664CC7F1EEF7DC1288A3F0AFECA369.pygtex protok
-ol_vencelj.pyg)...executed.
-
-
 (./_minted-protokol_vencelj/5F9B5FE320C1DA28B716721558AED1636C664CC7F1EEF7DC128
 8A3F0AFECA369.pygtex
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
@@ -1553,11 +1548,7 @@ C56189D99EDC3.pygtex)
 Overfull \vbox (0.46072pt too high) detected at line 450
  []
 
-[9]
-runsystem(rm _minted-protokol_vencelj/7352986A1868556CFD812C1DFFB163406C664CC7F
-1EEF7DC1288A3F0AFECA369.pygtex)...executed.
-
- (./protokol_vencelj.aux)
+[9] (./protokol_vencelj.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1571,10 +1562,10 @@ Package logreq Info: Writing requests to 'protokol_vencelj.run.xml'.
 
  [10] ) 
 Here is how much of TeX's memory you used:
- 49103 strings out of 474222
- 1117243 string characters out of 5748733
- 2018977 words of memory out of 5000000
- 70586 multiletter control sequences out of 15000+600000
+ 49100 strings out of 474222
+ 1116930 string characters out of 5748733
+ 2018971 words of memory out of 5000000
+ 70583 multiletter control sequences out of 15000+600000
  579003 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,15n,107p,1380b,2817s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1601,7 +1592,7 @@ re/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1
 m1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/shar
 e/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/type1/
 public/cm-super/sftt1000.pfb>
-Output written on protokol_vencelj.pdf (11 pages, 713812 bytes).
+Output written on protokol_vencelj.pdf (11 pages, 714037 bytes).
 PDF statistics:
  389 PDF objects out of 1000 (max. 8388607)
  295 compressed objects within 3 object streams

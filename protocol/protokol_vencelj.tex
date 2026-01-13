@@ -13,7 +13,7 @@
 % https://texdoc.org/serve/siunitx/0
 \usepackage{siunitx} % tables, quantities
 \usepackage{booktabs} % 
-\usepackage{hyperref} % functional links
+\usepackage[colorlinks=true]{hyperref} % functional links
 \usepackage{indentfirst} % indent the first row in paragraph
 \usepackage{subcaption} % subfigure
 \usepackage{float} % override graphical placement
@@ -119,7 +119,7 @@
 	\begin{equation} \label{hamil_eq}
 		H(\sigma) = - J \sum_{<ij>}\left(\sigma_i\sigma_j\right),
 	\end{equation}
-	kde $J$ je interakční energie, která nabývá hodnot $J > 0$ pro feromagnety a $J < 0$ pro antiferomagnety.
+	kde $J$ je interakční energie, která nabývá hodnot $J > 0$ pro feromagnety a $J < 0$ pro antiferomagnety a sčítá se přes nejbližší sousedy na mřížce.
 	
 	Pro feromagnetické látky musí platit, že konfigurace spinů je taková, aby vznikl nenulový magnetický moment $M$, který lze vypočítat jako součet všech spinů v mřížce
 	\begin{equation} \label{mag_eq}
@@ -135,10 +135,10 @@
 	\begin{equation} \label{boltz_dist}
 		p(\boldsymbol{\sigma}|T) = \exp(-\frac{E(\sigma)}{\mathrm{\mathbf{k_B}}T}),
 	\end{equation}
-	kde $\mathrm{\mathbf{k_B}}$ je Boltzmannova konstanta a $T$ je teplota \cite{CambridgeCATAM11pt2}. Do kritické teploty $T_\mathrm{c}$ (někdy zvané i jako Curieova teplota) jsou spiny v dostatečném uspořádání, aby magnetický moment $M(\sigma)$ měl nenulovou hodnotu. Při teplotě $T_\mathrm{c}$ dochází k fázové přeměně druhého druhu a v teplotách $T>T_\mathrm{c}$ se moment ztrácí \cite{Hasenbusch_1998}. Pro 3D Isingův model byla inverzní kritická teplota numericky vypočtena s výsledkem $\beta_\mathrm{c} = 0.2216595 \pm 0.0000026$ \cite{PhysRevB.44.5081}.
+	kde $\mathrm{\mathbf{k_B}}$ je Boltzmannova konstanta a $T$ je teplota \cite{CambridgeCATAM11pt2}. Do kritické teploty $T_\mathrm{c}$ (někdy zvané Curieova teplota) jsou spiny v dostatečném uspořádání, aby magnetický moment $M(\sigma)$ měl nenulovou hodnotu. Při teplotě $T_\mathrm{c}$ dochází k fázové přeměně druhého druhu a v teplotách $T>T_\mathrm{c}$ se moment ztrácí \cite{Hasenbusch_1998}. Pro 3D Isingův model byla inverzní kritická teplota numericky vypočtena s výsledkem $\beta_\mathrm{c} = 0.2216595 \pm 0.0000026$ \cite{PhysRevB.44.5081}.
 	
 	\subsection{Monte Carlo}
-	Jelikož neexistuje přijímané analytické řešení Isingova modelu pro 3D mřížku, používá se~k simulaci numerická metoda Monte Carlo (MC simulace).
+	Jelikož neexistuje přijímané analytické řešení Isingova modelu pro 3D mřížku, používá se k~simulaci numerická metoda Monte Carlo (MC simulace).
 	
 	\subsubsection{Typy algoritmů}
 	\paragraph{Metropolisův algoritmus} je založen na generování náhodného čísla představující pravděpodobnost $p(\sigma_i|T)$ (přepsáno pro stavy $a$ a $b$ $p_{a \rightarrow b}$). Pokud platí $\Delta E(\sigma_i) < 0$, proveď změnu stavu $a \rightarrow b$ s pravděpodobností $p_{a \rightarrow b} = 1$. V opačném případě proveď změnu stavu, pokud je vygenerovaná pravděpodobnost menší než partiční funkce $p_{a \rightarrow b} < \exp(-E(\sigma)/\mathrm{\mathbf{k_B}}T)$ \cite{FitzpatrickIsing}.
