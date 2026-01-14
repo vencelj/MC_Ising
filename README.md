@@ -15,7 +15,7 @@ Apliakce vznikla na základě zadání semestrální práce na Vysoké škole ch
 Aplikace byla vyvinuta pro Linux a Windows.
 1. **Klonování úložiště**
     ```bash
-    git clone [https://github.com/vencelj/MC_Ising.git](https://github.com/vencelj/MC_Ising.git)
+    git clone https://github.com/vencelj/MC_Ising.git
     cd MC_Ising
 2. **Potřebné moduly**
     ```bash
