@@ -13,9 +13,9 @@ Apliakce vznikla na základě zadání semestrální práce na Vysoké škole ch
 
 ## Instalace
 Aplikace byla vyvinuta pro Linux a Windows.
-1. **Požadavky**
-   Aplikaci k exportu animace do MP4 vyžaduje <a href="https://www.ffmpeg.org/">FFmpeg</a>.
-2. **Klonování úložiště**
+1. **Požadavky** <br>
+   Aplikace k exportu animace do MP4 vyžaduje <a href="https://www.ffmpeg.org/">FFmpeg</a>.
+2. **Klonování úložiště** 
     ```bash
     git clone https://github.com/vencelj/MC_Ising.git
     cd MC_Ising
