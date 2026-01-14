@@ -15,10 +15,10 @@
 \contentsline {subsection}{\numberline {4.2}Zahřívání}{5}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Ochlazování}{5}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Tepelný cyklus}{6}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Antiferomagnet}{6}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Hystereze – vliv počátečních podmínek na průběh simulace}{6}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}Vliv velikosti mřížky na průběh simulace}{7}{subsection.4.7}%
-\contentsline {section}{\numberline {5}Závěr}{7}{section.5}%
+\contentsline {subsection}{\numberline {4.5}Antiferomagnet}{7}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Hystereze – vliv počátečních podmínek na průběh simulace}{7}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Vliv velikosti mřížky na průběh simulace}{8}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Závěr}{9}{section.5}%
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
@@ -41,4 +41,4 @@
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
 \babel@toc {czech}{}\relax 
-\contentsline {section}{\numberline {A}Pseudokód MC}{9}{appendix.1.A}%
+\contentsline {section}{\numberline {A}Pseudokód MC}{11}{appendix.1.A}%

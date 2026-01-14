@@ -264,6 +264,15 @@
 		\end{subfigure}
 	\end{figure}
 	
+	Data jsem proložil závislostí $M(T) = \alpha(T - T_\mathrm{c})^\beta$, ze které jsem odečetl kritickou teplotu $T_\mathrm{c} = 4,462$.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{fitt.png}
+		\caption{Získání kritických konstant}
+		\label{fitt}
+	\end{figure}
+	
 	\subsection{Tepelný cyklus}
 	Tepelný cyklus byl nastaven na náhodnou počáteční konfiguraci.
 	
@@ -324,7 +333,14 @@
 	\end{figure}
 	
 	\subsection{Vliv velikosti mřížky na průběh simulace}
-	Provedl jsem 5 simulací s velikostmi mřížky 10, 20, 30, 40 a 50. Velikost mřížky má vliv na přesnost odečítání kritické teploty.
+	Provedl jsem 5 simulací s velikostmi mřížky 10, 20, 30, 40 a 50. Velikost mřížky má vliv na přesnost odečítání kritické teploty. Pro znázornění jsem vypočetl tepelnou kapacitu $C = \dv{E}{T}$. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{tep_cap.png}
+		\caption{Tepelná kapacita}
+		\label{tep_cap}
+	\end{figure}
 	
 	\section{Závěr}
 	Napsal jsem program pro MC simulaci Isingova feromagnetu na kubické mřížce v periodických okrajových podmínkách s nulovým vnějším magnetickým polem. Na této mřížce jsem monitoroval energii a celkovou magnetizaci. Simulaci jsem provedl pro různé termální cykly a různé velikosti mřížky.
